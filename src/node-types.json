@@ -149,6 +149,10 @@
             "named": true
           },
           {
+            "type": "modifier_chain",
+            "named": true
+          },
+          {
             "type": "transform_chain",
             "named": true
           },
@@ -353,6 +357,10 @@
             "named": true
           },
           {
+            "type": "modifier_chain",
+            "named": true
+          },
+          {
             "type": "transform_chain",
             "named": true
           },
@@ -518,6 +526,10 @@
             "named": true
           },
           {
+            "type": "modifier_chain",
+            "named": true
+          },
+          {
             "type": "transform_chain",
             "named": true
           },
@@ -563,6 +575,10 @@
           },
           {
             "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "modifier_chain",
             "named": true
           },
           {
@@ -699,6 +715,10 @@
             "named": true
           },
           {
+            "type": "modifier_chain",
+            "named": true
+          },
+          {
             "type": "transform_chain",
             "named": true
           },
@@ -750,6 +770,10 @@
           },
           {
             "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "modifier_chain",
             "named": true
           },
           {
@@ -833,6 +857,53 @@
     "fields": {}
   },
   {
+    "type": "modifier_chain",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assign_block",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "intersection_for_block",
+          "named": true
+        },
+        {
+          "type": "let_block",
+          "named": true
+        },
+        {
+          "type": "modifier",
+          "named": true
+        },
+        {
+          "type": "modifier_chain",
+          "named": true
+        },
+        {
+          "type": "transform_chain",
+          "named": true
+        },
+        {
+          "type": "union_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "module_call",
     "named": true,
     "fields": {
@@ -888,6 +959,10 @@
           },
           {
             "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "modifier_chain",
             "named": true
           },
           {
@@ -1067,6 +1142,10 @@
           "named": true
         },
         {
+          "type": "modifier_chain",
+          "named": true
+        },
+        {
           "type": "module_declaration",
           "named": true
         },
@@ -1146,6 +1225,10 @@
           "named": true
         },
         {
+          "type": "modifier_chain",
+          "named": true
+        },
+        {
           "type": "module_call",
           "named": true
         },
@@ -1213,6 +1296,10 @@
         },
         {
           "type": "let_block",
+          "named": true
+        },
+        {
+          "type": "modifier_chain",
           "named": true
         },
         {

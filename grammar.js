@@ -79,6 +79,7 @@ const rules = {
     $.let_block,
     $.assign_block,
     $.union_block,
+    $.modifier_chain,
     $.transform_chain,
     ';',
   ),

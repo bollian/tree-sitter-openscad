@@ -324,6 +324,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "modifier_chain"
+        },
+        {
+          "type": "SYMBOL",
           "name": "transform_chain"
         },
         {
