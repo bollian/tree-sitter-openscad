@@ -1,0 +1,23 @@
+{
+  "name": "tree-sitter-openscad",
+  "version": "0.1.0",
+  "description": "Incremental parser for OpenSCAD",
+  "repository": "https://github.com/bollian/tree-sitter-scad.git",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "parser",
+    "lexer",
+    "scad"
+  ],
+  "author": "Ian Boll <lordofthemaracas@gmail.com>",
+  "license": "MIT OR Apache-2.0",
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.0"
+  }
+}
