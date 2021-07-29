@@ -119,45 +119,56 @@
   {
     "type": "assign_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "assign_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "intersection_for_block",
+            "named": true
+          },
+          {
+            "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "module_call",
+            "named": true
+          },
+          {
+            "type": "transform_chain",
+            "named": true
+          },
+          {
+            "type": "union_block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "module_call",
-          "named": true
-        },
-        {
           "type": "parenthesized_assignments",
-          "named": true
-        },
-        {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
           "named": true
         }
       ]
@@ -196,16 +207,27 @@
   {
     "type": "binary_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -226,6 +248,50 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "condition_update_clause",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
+      "initializer": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "assignment",
+            "named": true
+          }
+        ]
+      },
+      "update": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "assignment",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -261,45 +327,60 @@
   {
     "type": "for_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "assign_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "intersection_for_block",
+            "named": true
+          },
+          {
+            "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "module_call",
+            "named": true
+          },
+          {
+            "type": "transform_chain",
+            "named": true
+          },
+          {
+            "type": "union_block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "module_call",
+          "type": "condition_update_clause",
           "named": true
         },
         {
           "type": "parenthesized_assignments",
-          "named": true
-        },
-        {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
           "named": true
         }
       ]
@@ -314,6 +395,10 @@
       "required": true,
       "types": [
         {
+          "type": "condition_update_clause",
+          "named": true
+        },
+        {
           "type": "parenthesized_assignments",
           "named": true
         }
@@ -324,6 +409,16 @@
     "type": "function",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      },
       "parameters": {
         "multiple": false,
         "required": true,
@@ -334,16 +429,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -604,45 +689,56 @@
   {
     "type": "intersection_for_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "assign_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "intersection_for_block",
+            "named": true
+          },
+          {
+            "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "module_call",
+            "named": true
+          },
+          {
+            "type": "transform_chain",
+            "named": true
+          },
+          {
+            "type": "union_block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "module_call",
-          "named": true
-        },
-        {
           "type": "parenthesized_assignments",
-          "named": true
-        },
-        {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
           "named": true
         }
       ]
@@ -651,45 +747,56 @@
   {
     "type": "let_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "assign_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
+            "named": true
+          },
+          {
+            "type": "intersection_for_block",
+            "named": true
+          },
+          {
+            "type": "let_block",
+            "named": true
+          },
+          {
+            "type": "module_call",
+            "named": true
+          },
+          {
+            "type": "transform_chain",
+            "named": true
+          },
+          {
+            "type": "union_block",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "assign_block",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "intersection_for_block",
-          "named": true
-        },
-        {
-          "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "module_call",
-          "named": true
-        },
-        {
           "type": "parenthesized_assignments",
-          "named": true
-        },
-        {
-          "type": "transform_chain",
-          "named": true
-        },
-        {
-          "type": "union_block",
           "named": true
         }
       ]
@@ -698,15 +805,22 @@
   {
     "type": "let_expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
         {
           "type": "parenthesized_assignments",
           "named": true
@@ -873,7 +987,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "assignment",
@@ -906,7 +1020,7 @@
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -916,7 +1030,7 @@
         "required": false,
         "types": [
           {
-            "type": "number",
+            "type": "_expression",
             "named": true
           }
         ]
@@ -926,7 +1040,7 @@
         "required": true,
         "types": [
           {
-            "type": "number",
+            "type": "_expression",
             "named": true
           }
         ]
