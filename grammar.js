@@ -43,7 +43,7 @@ const rules = {
   _include_statement: $ => choice($.use_statement, $.include_statement),
   use_statement: $ => seq('use', $.include_path, ';'),
   include_statement: $ => seq('include', $.include_path, ';'),
-  include_path: $ => token(seq('<', repeat(/[^>]/), '>')),
+  include_path: $ => /<[^>]*>/,
 
   // modules
   module_declaration: $ => seq(
