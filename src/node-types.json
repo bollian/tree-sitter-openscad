@@ -121,7 +121,7 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -146,10 +146,6 @@
           },
           {
             "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "module_call",
             "named": true
           },
           {
@@ -329,7 +325,7 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -354,10 +350,6 @@
           },
           {
             "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "module_call",
             "named": true
           },
           {
@@ -526,10 +518,6 @@
             "named": true
           },
           {
-            "type": "module_call",
-            "named": true
-          },
-          {
             "type": "transform_chain",
             "named": true
           },
@@ -550,7 +538,7 @@
         ]
       },
       "consequence": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -575,10 +563,6 @@
           },
           {
             "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "module_call",
             "named": true
           },
           {
@@ -687,7 +671,7 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -712,10 +696,6 @@
           },
           {
             "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "module_call",
             "named": true
           },
           {
@@ -745,7 +725,7 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -770,10 +750,6 @@
           },
           {
             "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "module_call",
             "named": true
           },
           {
@@ -859,20 +835,27 @@
   {
     "type": "module_call",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arguments",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -880,7 +863,7 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
@@ -905,10 +888,6 @@
           },
           {
             "type": "let_block",
-            "named": true
-          },
-          {
-            "type": "module_call",
             "named": true
           },
           {
@@ -1088,10 +1067,6 @@
           "named": true
         },
         {
-          "type": "module_call",
-          "named": true
-        },
-        {
           "type": "module_declaration",
           "named": true
         },
@@ -1143,25 +1118,6 @@
     }
   },
   {
-    "type": "transform",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arguments",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "transform_chain",
     "named": true,
     "fields": {},
@@ -1191,10 +1147,6 @@
         },
         {
           "type": "module_call",
-          "named": true
-        },
-        {
-          "type": "transform",
           "named": true
         },
         {
@@ -1261,10 +1213,6 @@
         },
         {
           "type": "let_block",
-          "named": true
-        },
-        {
-          "type": "module_call",
           "named": true
         },
         {

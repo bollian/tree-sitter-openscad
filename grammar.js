@@ -64,7 +64,6 @@ const rules = {
   ),
 
   _item: $ => choice(
-    ';',
     seq($.assignment, ';'),
     $._statement,
     $.comment,
@@ -81,7 +80,7 @@ const rules = {
     $.assign_block,
     $.union_block,
     $.transform_chain,
-    seq($.module_call, ';'),
+    ';',
   ),
   assignment: $ => seq(
     field('left', choice($.identifier, $.special_variable)),
@@ -121,9 +120,11 @@ const rules = {
   // function calls
   modifier_chain: $ => seq($.modifier, $._statement),
   modifier: $ => choice('*', '!', '#', '%'),
-  transform_chain: $ => seq($.transform, $._statement),
-  transform: $ => seq($.identifier, $.arguments),
-  module_call: $ => seq($.identifier, $.arguments),
+  transform_chain: $ => seq($.module_call, $._statement),
+  module_call: $ => seq(
+    field('name', $.identifier),
+    field('arguments', $.arguments),
+  ),
   arguments: $ => parens(commaSep(choice($._expression, $.assignment))),
 
   parenthesized_assignments: $ => parens(commaSep($.assignment)),
