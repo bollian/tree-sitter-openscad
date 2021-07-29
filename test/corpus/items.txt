@@ -1,0 +1,58 @@
+================================================================================
+Basic Items
+================================================================================
+use <other_file.scad>;
+include <other_file.scad>;
+use <multiline
+valid.scad>;
+
+function square(x) = x * x;
+
+module my_cylinder(r, height = square(4), $fn = 100)
+  cylinder(r = r, h = height);
+
+module big_module() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (include_statement
+    (include_path))
+  (include_statement
+    (include_path))
+  (include_statement
+    (include_path))
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
+    (binary_expression
+      left: (identifier)
+      right: (identifier)))
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier)
+      (assignment
+        left: (identifier)
+        right: (function_call
+          function: (identifier)
+          arguments: (arguments
+            (number))))
+      (assignment
+        left: (special_variable)
+        right: (number)))
+    body: (transform_chain
+      (module_call
+        name: (identifier)
+        arguments: (arguments
+          (assignment
+            left: (identifier)
+            right: (identifier))
+          (assignment
+            left: (identifier)
+            right: (identifier))))))
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration)
+    body: (union_block)))

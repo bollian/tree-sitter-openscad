@@ -50,20 +50,6 @@
     ]
   },
   {
-    "type": "_include_statement",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "include_statement",
-        "named": true
-      },
-      {
-        "type": "use_statement",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "_literal",
     "named": true,
     "subtypes": [
@@ -998,25 +984,6 @@
     }
   },
   {
-    "type": "parameter_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_literal",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parameters_declaration",
     "named": true,
     "fields": {},
@@ -1025,7 +992,15 @@
       "required": false,
       "types": [
         {
-          "type": "parameter_declaration",
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "special_variable",
           "named": true
         }
       ]
@@ -1106,10 +1081,6 @@
       "required": false,
       "types": [
         {
-          "type": "_include_statement",
-          "named": true
-        },
-        {
           "type": "assign_block",
           "named": true
         },
@@ -1131,6 +1102,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "include_statement",
           "named": true
         },
         {
@@ -1312,21 +1287,6 @@
         },
         {
           "type": "union_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "use_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "include_path",
           "named": true
         }
       ]

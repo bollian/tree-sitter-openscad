@@ -29,7 +29,7 @@ function binary_operator(operator, rule) {
 const identifier_pattern = /[a-zA-Z_]\w*/;
 
 const rules = {
-  source_file: $ => repeat(choice($._include_statement, $._item)),
+  source_file: $ => repeat(choice($.include_statement, $._item)),
 
   // comments
   comment: $ => choice($._single_line_comment, $._block_comment),
@@ -38,11 +38,10 @@ const rules = {
   customizer_group: $ => /\[[^\]]*\]/,
 
   // use/include statements
-  // these are called statements, but aren't included in $._statement because
-  // they can't be used in all the same places as other statements
-  _include_statement: $ => choice($.use_statement, $.include_statement),
-  use_statement: $ => seq('use', $.include_path, ';'),
-  include_statement: $ => seq('include', $.include_path, ';'),
+  // These are called statements, but aren't included in $._statement because
+  // they can't be used in all the same places as other statements or even other
+  // items.
+  include_statement: $ => seq(choice('use', 'include'), $.include_path, ';'),
   include_path: $ => /<[^>]*>/,
 
   // modules
@@ -52,8 +51,8 @@ const rules = {
     field('parameters', $.parameters_declaration),
     field('body', $._statement),
   ),
-  parameters_declaration: $ => seq('(', commaSep($.parameter_declaration), ')'),
-  parameter_declaration: $ => seq($.identifier, optional(seq('=', $._literal))),
+  parameters_declaration: $ => parens(commaSep($._parameter_declaration)),
+  _parameter_declaration: $ => choice($._variable_name, $.assignment),
 
   // function declarations
   function_declaration: $ => seq(
@@ -84,7 +83,7 @@ const rules = {
     ';',
   ),
   assignment: $ => seq(
-    field('left', choice($.identifier, $.special_variable)),
+    field('left', $._variable_name),
     '=',
     field('right', $._expression)
   ),
@@ -147,14 +146,14 @@ const rules = {
     $.index_expression,
     $.dot_index_expression,
     $._literal,
-    $.identifier,
-    $.special_variable,
+    $._variable_name,
   ),
   let_expression: $ => bodied_block('let', $.parenthesized_assignments, $._expression),
 
   // valid names for variables, functions, and modules
   identifier: $ => identifier_pattern,
   special_variable: $ => token(seq('$', identifier_pattern)),
+  _variable_name: $ => choice($.identifier, $.special_variable),
 
   // atoms that create immediate values
   _literal: $ => choice(
@@ -238,6 +237,6 @@ const rules = {
 module.exports = grammar({
   name: 'openscad',
   word: $ => $.identifier,
-  supertypes: $ => [$._literal, $._expression, $._include_statement],
+  supertypes: $ => [$._literal, $._expression],
   rules: rules,
 });
