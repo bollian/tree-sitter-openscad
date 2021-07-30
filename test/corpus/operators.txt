@@ -5,6 +5,8 @@ num = 1 + 2;
 s = "Hello, World!";
 result = call();
 math = 8 % 3 * 5 % 7 / 2 % 1;
+number_index = [1, 2, 3, 4][3];
+named_index = [1, 2, 3, 4].x;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -33,7 +35,25 @@ math = 8 % 3 * 5 % 7 / 2 % 1;
             right: (number))
           right: (number))
         right: (number))
-      right: (number))))
+      right: (number)))
+  (assignment
+    left: (identifier)
+    right: (index_expression
+      value: (list
+        (number)
+        (number)
+        (number)
+        (number))
+      index: (number)))
+  (assignment
+    left: (identifier)
+    right: (dot_index_expression
+      (list
+        (number)
+        (number)
+        (number)
+        (number))
+      (identifier))))
 
 ================================================================================
 Logical Precedence
@@ -50,6 +70,8 @@ echo(int1 + int2 && bool);
 echo(bool && int1 + int2);
 echo(side_effect(1) && side_effect(2) || side_effect(3));
 echo(truthy_effect(1) || side_effect(2) && side_effect(3));
+echo(4 > 5 || true);
+echo(true && 4 == 4);
 --------------------------------------------------------------------------------
 
 (source_file
@@ -137,7 +159,25 @@ echo(truthy_effect(1) || side_effect(2) && side_effect(3));
             right: (function_call
               function: (identifier)
               arguments: (arguments
-                (number)))))))))
+                (number))))))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (binary_expression
+          left: (binary_expression
+            left: (number)
+            right: (number))
+          right: (boolean)))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (binary_expression
+          left: (boolean)
+          right: (binary_expression
+            left: (number)
+            right: (number)))))))
 
 ================================================================================
 Mathematical Precedence
@@ -157,11 +197,14 @@ num = 5 + 4 * 3 ^ 2;
           right: (number))))))
 
 ================================================================================
-Function Call Precedence
+Function Precedence
 ================================================================================
 identity = function(x) x;
-echo(lazy = function(y) identity(y));
-echo(eager = (function(z) identity)(4));
+lazy = function(y) identity(y);
+eager = (function(z) identity)(4);
+adder = function(x, y) x + y;
+multiplier = function(x, y) x * y;
+indexer = function(v) v[0];
 --------------------------------------------------------------------------------
 
 (source_file
@@ -171,33 +214,51 @@ echo(eager = (function(z) identity)(4));
       parameters: (parameters_declaration
         (identifier))
       body: (identifier)))
-  (transform_chain
-    (module_call
-      name: (identifier)
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier))
+      body: (function_call
+        function: (identifier)
+        arguments: (arguments
+          (identifier)))))
+  (assignment
+    left: (identifier)
+    right: (function_call
+      function: (parenthesized_expression
+        (function
+          parameters: (parameters_declaration
+            (identifier))
+          body: (identifier)))
       arguments: (arguments
-        (assignment
-          left: (identifier)
-          right: (function
-            parameters: (parameters_declaration
-              (identifier))
-            body: (function_call
-              function: (identifier)
-              arguments: (arguments
-                (identifier))))))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (assignment
-          left: (identifier)
-          right: (function_call
-            function: (parenthesized_expression
-              (function
-                parameters: (parameters_declaration
-                  (identifier))
-                body: (identifier)))
-            arguments: (arguments
-              (number))))))))
+        (number))))
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier)
+        (identifier))
+      body: (binary_expression
+        left: (identifier)
+        right: (identifier))))
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier)
+        (identifier))
+      body: (binary_expression
+        left: (identifier)
+        right: (identifier))))
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier))
+      body: (index_expression
+        value: (identifier)
+        index: (number)))))
 
 ================================================================================
 Functions and Ternaries
