@@ -62,6 +62,10 @@
         "named": true
       },
       {
+        "type": "list",
+        "named": true
+      },
+      {
         "type": "list_comprehension",
         "named": true
       },
@@ -75,10 +79,6 @@
       },
       {
         "type": "string",
-        "named": true
-      },
-      {
-        "type": "vector",
         "named": true
       }
     ]
@@ -811,6 +811,25 @@
     }
   },
   {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "each",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "list_comprehension",
     "named": true,
     "fields": {},
@@ -1287,25 +1306,6 @@
         },
         {
           "type": "union_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "vector",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "each",
           "named": true
         }
       ]

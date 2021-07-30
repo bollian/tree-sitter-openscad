@@ -162,7 +162,7 @@ const rules = {
     $.boolean,
     $.function,
     $.range,
-    $.vector,
+    $.list,
     $.list_comprehension,
   ),
   string: $ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
@@ -181,21 +181,21 @@ const rules = {
     ':', field('end', $._expression),
   )),
 
-  vector: $ => brackets(commaSep($._vector_cell)),
-  _vector_cell: $ => choice($._expression, $.each),
+  list: $ => brackets(commaSep($._list_cell)),
+  _list_cell: $ => choice($._expression, $.each),
   each: $ => seq('each', $._literal),
 
   list_comprehension: $ => brackets(seq(
     $.for_clause,
-    choice($.if_clause, $._vector_cell),
+    choice($.if_clause, $._list_cell),
   )),
   for_clause: $ => seq('for', choice($.parenthesized_assignments, $.condition_update_clause)),
   if_clause: $ => seq(
     'if',
     field('condition', $.parenthesized_expression),
-    field('consequence', $._vector_cell),
+    field('consequence', $._list_cell),
     optional(
-      seq('else', field('alternative', choice($._vector_cell, $.if_clause)))
+      seq('else', field('alternative', choice($._list_cell, $.if_clause)))
     )
   ),
 

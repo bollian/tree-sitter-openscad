@@ -23,14 +23,14 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
     right: (boolean))
   (assignment
     left: (identifier)
-    right: (vector
+    right: (list
       (number)
       (number)
       (each
-        (vector
+        (list
           (number)
           (number)))
-      (vector
+      (list
         (number)
         (number))))
   (assignment

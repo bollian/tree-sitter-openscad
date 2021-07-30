@@ -20,7 +20,7 @@ translate([1, 0, 0]) {
     (module_call
       name: (identifier)
       arguments: (arguments
-        (vector
+        (list
           (number)
           (number)
           (number))))
@@ -32,7 +32,7 @@ translate([1, 0, 0]) {
     (module_call
       name: (identifier)
       arguments: (arguments
-        (vector
+        (list
           (number)
           (number)
           (number))))
@@ -46,7 +46,7 @@ translate([1, 0, 0]) {
             (module_call
               name: (identifier)
               arguments: (arguments
-                (vector
+                (list
                   (number)
                   (number)
                   (number))))
@@ -96,7 +96,7 @@ intersection_for (i = [1, 2, 3]) {
         (module_call
           name: (identifier)
           arguments: (arguments
-            (vector
+            (list
               (number)
               (number)
               (number))))
@@ -130,7 +130,7 @@ intersection_for (i = [1, 2, 3]) {
             (module_call
               name: (identifier)
               arguments: (arguments
-                (vector
+                (list
                   (identifier)
                   (identifier)
                   (number))))
@@ -145,7 +145,7 @@ intersection_for (i = [1, 2, 3]) {
     (parenthesized_assignments
       (assignment
         left: (identifier)
-        right: (vector
+        right: (list
           (number)
           (number)
           (number))))
@@ -160,7 +160,7 @@ intersection_for (i = [1, 2, 3]) {
             (module_call
               name: (identifier)
               arguments: (arguments
-                (vector
+                (list
                   (number)
                   (identifier)
                   (number))))
@@ -201,7 +201,7 @@ rotate([0, 90, 0]) # cylinder();
     (module_call
       name: (identifier)
       arguments: (arguments
-        (vector
+        (list
           (number)
           (number)
           (number))))
