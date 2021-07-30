@@ -56,3 +56,29 @@ module big_module() {}
     name: (identifier)
     parameters: (parameters_declaration)
     body: (union_block)))
+
+================================================================================
+Nested Items
+================================================================================
+module big_module() {
+  function inner_function() = undef;
+  module inner_module() cube();
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration)
+    body: (union_block
+      (function_declaration
+        name: (identifier)
+        parameters: (parameters_declaration)
+        (identifier))
+      (module_declaration
+        name: (identifier)
+        parameters: (parameters_declaration)
+        body: (transform_chain
+          (module_call
+            name: (identifier)
+            arguments: (arguments)))))))

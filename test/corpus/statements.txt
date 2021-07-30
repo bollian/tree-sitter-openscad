@@ -1,0 +1,219 @@
+================================================================================
+Tranformations
+================================================================================
+cylinder();
+rotate([90, 0, 0]) cylinder();
+translate([1, 0, 0]) {
+    difference() {
+        rotate([0, 90, 0]) cylinder();
+        cube();
+    }
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments)))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (vector
+          (number)
+          (number)
+          (number))))
+    (transform_chain
+      (module_call
+        name: (identifier)
+        arguments: (arguments))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (vector
+          (number)
+          (number)
+          (number))))
+    (union_block
+      (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments))
+        (union_block
+          (transform_chain
+            (module_call
+              name: (identifier)
+              arguments: (arguments
+                (vector
+                  (number)
+                  (number)
+                  (number))))
+            (transform_chain
+              (module_call
+                name: (identifier)
+                arguments: (arguments))))
+          (transform_chain
+            (module_call
+              name: (identifier)
+              arguments: (arguments))))))))
+
+================================================================================
+Control Flow
+================================================================================
+if ($preview)
+    if (false)
+        sphere();
+    else
+        translate([2, 0, 0]) cube();
+
+for (i = [1:2:7]) {
+    let (x = i ^ 2, y = x - 1) {
+        translate([x, y, 0]) sphere(r = i);
+    }
+}
+
+intersection_for (i = [1, 2, 3]) {
+    if (i > 1) {
+        translate([0, i, 0]) cube();
+    }
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_block
+    condition: (parenthesized_expression
+      (special_variable))
+    consequence: (if_block
+      condition: (parenthesized_expression
+        (boolean))
+      consequence: (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments)))
+      alternative: (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments
+            (vector
+              (number)
+              (number)
+              (number))))
+        (transform_chain
+          (module_call
+            name: (identifier)
+            arguments: (arguments))))))
+  (for_block
+    (parenthesized_assignments
+      (assignment
+        left: (identifier)
+        right: (range
+          start: (number)
+          increment: (number)
+          end: (number))))
+    body: (union_block
+      (let_block
+        (parenthesized_assignments
+          (assignment
+            left: (identifier)
+            right: (binary_expression
+              left: (identifier)
+              right: (number)))
+          (assignment
+            left: (identifier)
+            right: (binary_expression
+              left: (identifier)
+              right: (number))))
+        body: (union_block
+          (transform_chain
+            (module_call
+              name: (identifier)
+              arguments: (arguments
+                (vector
+                  (identifier)
+                  (identifier)
+                  (number))))
+            (transform_chain
+              (module_call
+                name: (identifier)
+                arguments: (arguments
+                  (assignment
+                    left: (identifier)
+                    right: (identifier))))))))))
+  (intersection_for_block
+    (parenthesized_assignments
+      (assignment
+        left: (identifier)
+        right: (vector
+          (number)
+          (number)
+          (number))))
+    body: (union_block
+      (if_block
+        condition: (parenthesized_expression
+          (binary_expression
+            left: (identifier)
+            right: (number)))
+        consequence: (union_block
+          (transform_chain
+            (module_call
+              name: (identifier)
+              arguments: (arguments
+                (vector
+                  (number)
+                  (identifier)
+                  (number))))
+            (transform_chain
+              (module_call
+                name: (identifier)
+                arguments: (arguments)))))))))
+
+================================================================================
+Modifiers
+================================================================================
+! cylinder();
+* linear_extrude(4) text("Hello");
+rotate([0, 90, 0]) # cylinder();
+% cube();
+--------------------------------------------------------------------------------
+
+(source_file
+  (modifier_chain
+    (modifier)
+    (transform_chain
+      (module_call
+        name: (identifier)
+        arguments: (arguments))))
+  (modifier_chain
+    (modifier)
+    (transform_chain
+      (module_call
+        name: (identifier)
+        arguments: (arguments
+          (number)))
+      (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments
+            (string))))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (vector
+          (number)
+          (number)
+          (number))))
+    (modifier_chain
+      (modifier)
+      (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments)))))
+  (modifier_chain
+    (modifier)
+    (transform_chain
+      (module_call
+        name: (identifier)
+        arguments: (arguments)))))

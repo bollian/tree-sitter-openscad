@@ -1,0 +1,151 @@
+================================================================================
+All Literals
+================================================================================
+num = -4.3;
+name = "Karl";
+boolean = true;
+list = [1, 2, each [3, 4], [5, 6]];
+range = [1:num:-10];
+fn = function(x, y) x + y;
+comprehension = [for (x = 0; x < 5; x = x + 2) 12];
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (unary_expression
+      (number)))
+  (assignment
+    left: (identifier)
+    right: (string))
+  (assignment
+    left: (identifier)
+    right: (boolean))
+  (assignment
+    left: (identifier)
+    right: (vector
+      (number)
+      (number)
+      (each
+        (vector
+          (number)
+          (number)))
+      (vector
+        (number)
+        (number))))
+  (assignment
+    left: (identifier)
+    right: (range
+      start: (number)
+      increment: (identifier)
+      end: (unary_expression
+        (number))))
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier)
+        (identifier))
+      body: (binary_expression
+        left: (identifier)
+        right: (identifier))))
+  (assignment
+    left: (identifier)
+    right: (list_comprehension
+      (for_clause
+        (condition_update_clause
+          initializer: (assignment
+            left: (identifier)
+            right: (number))
+          condition: (binary_expression
+            left: (identifier)
+            right: (number))
+          update: (assignment
+            left: (identifier)
+            right: (binary_expression
+              left: (identifier)
+              right: (number)))))
+      (number))))
+
+================================================================================
+Comprehensions
+================================================================================
+conditionless = [for (x = [1:10]) x];
+conditioned = [for (x = [1:10]) if ($preview) x];
+ifelse = [for (x = [1:10]) if ($preview) x else ln(x)];
+complex_condition = [
+    for (x = [1:10]) if (x % 2 == 0) x else if (x < 5) x - 1 else 0
+];
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (list_comprehension
+      (for_clause
+        (parenthesized_assignments
+          (assignment
+            left: (identifier)
+            right: (range
+              start: (number)
+              end: (number)))))
+      (identifier)))
+  (assignment
+    left: (identifier)
+    right: (list_comprehension
+      (for_clause
+        (parenthesized_assignments
+          (assignment
+            left: (identifier)
+            right: (range
+              start: (number)
+              end: (number)))))
+      (if_clause
+        condition: (parenthesized_expression
+          (special_variable))
+        consequence: (identifier))))
+  (assignment
+    left: (identifier)
+    right: (list_comprehension
+      (for_clause
+        (parenthesized_assignments
+          (assignment
+            left: (identifier)
+            right: (range
+              start: (number)
+              end: (number)))))
+      (if_clause
+        condition: (parenthesized_expression
+          (special_variable))
+        consequence: (identifier)
+        alternative: (function_call
+          function: (identifier)
+          arguments: (arguments
+            (identifier))))))
+  (assignment
+    left: (identifier)
+    right: (list_comprehension
+      (for_clause
+        (parenthesized_assignments
+          (assignment
+            left: (identifier)
+            right: (range
+              start: (number)
+              end: (number)))))
+      (if_clause
+        condition: (parenthesized_expression
+          (binary_expression
+            left: (binary_expression
+              left: (identifier)
+              right: (number))
+            right: (number)))
+        consequence: (identifier)
+        alternative: (if_clause
+          condition: (parenthesized_expression
+            (binary_expression
+              left: (identifier)
+              right: (number)))
+          consequence: (binary_expression
+            left: (identifier)
+            right: (number))
+          alternative: (number))))))

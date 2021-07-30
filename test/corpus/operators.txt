@@ -1,0 +1,235 @@
+================================================================================
+Basic Operations
+================================================================================
+num = 1 + 2;
+s = "Hello, World!";
+result = call();
+math = 8 % 3 * 5 % 7 / 2 % 1;
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (binary_expression
+      left: (number)
+      right: (number)))
+  (assignment
+    left: (identifier)
+    right: (string))
+  (assignment
+    left: (identifier)
+    right: (function_call
+      function: (identifier)
+      arguments: (arguments)))
+  (assignment
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (binary_expression
+          left: (binary_expression
+            left: (binary_expression
+              left: (number)
+              right: (number))
+            right: (number))
+          right: (number))
+        right: (number))
+      right: (number))))
+
+================================================================================
+Logical Precedence
+================================================================================
+function side_effect(x) =
+    echo(str("side effect ", x));
+function truthy_effect(x) =
+    side_effect(x) == undef;
+
+bool = true;
+int1 = 4;
+int2 = 5;
+echo(int1 + int2 && bool);
+echo(bool && int1 + int2);
+echo(side_effect(1) && side_effect(2) || side_effect(3));
+echo(truthy_effect(1) || side_effect(2) && side_effect(3));
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
+    (function_call
+      function: (identifier)
+      arguments: (arguments
+        (function_call
+          function: (identifier)
+          arguments: (arguments
+            (string)
+            (identifier))))))
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
+    (binary_expression
+      left: (function_call
+        function: (identifier)
+        arguments: (arguments
+          (identifier)))
+      right: (identifier)))
+  (assignment
+    left: (identifier)
+    right: (boolean))
+  (assignment
+    left: (identifier)
+    right: (number))
+  (assignment
+    left: (identifier)
+    right: (number))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (binary_expression
+          left: (binary_expression
+            left: (identifier)
+            right: (identifier))
+          right: (identifier)))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (binary_expression
+          left: (identifier)
+          right: (binary_expression
+            left: (identifier)
+            right: (identifier))))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (binary_expression
+          left: (binary_expression
+            left: (function_call
+              function: (identifier)
+              arguments: (arguments
+                (number)))
+            right: (function_call
+              function: (identifier)
+              arguments: (arguments
+                (number))))
+          right: (function_call
+            function: (identifier)
+            arguments: (arguments
+              (number)))))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (binary_expression
+          left: (function_call
+            function: (identifier)
+            arguments: (arguments
+              (number)))
+          right: (binary_expression
+            left: (function_call
+              function: (identifier)
+              arguments: (arguments
+                (number)))
+            right: (function_call
+              function: (identifier)
+              arguments: (arguments
+                (number)))))))))
+
+================================================================================
+Mathematical Precedence
+================================================================================
+num = 5 + 4 * 3 ^ 2;
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (binary_expression
+      left: (number)
+      right: (binary_expression
+        left: (number)
+        right: (binary_expression
+          left: (number)
+          right: (number))))))
+
+================================================================================
+Function Call Precedence
+================================================================================
+identity = function(x) x;
+echo(lazy = function(y) identity(y));
+echo(eager = (function(z) identity)(4));
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier))
+      body: (identifier)))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (assignment
+          left: (identifier)
+          right: (function
+            parameters: (parameters_declaration
+              (identifier))
+            body: (function_call
+              function: (identifier)
+              arguments: (arguments
+                (identifier))))))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (assignment
+          left: (identifier)
+          right: (function_call
+            function: (parenthesized_expression
+              (function
+                parameters: (parameters_declaration
+                  (identifier))
+                body: (identifier)))
+            arguments: (arguments
+              (number))))))))
+
+================================================================================
+Functions and Ternaries
+================================================================================
+fn = function(x) x;
+echo(fn ? "truthy" : "falsey");
+echo(function(y) y ? "first" : "second");
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
+        (identifier))
+      body: (identifier)))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (ternary_expression
+          condition: (identifier)
+          consequence: (string)
+          alternative: (string)))))
+  (transform_chain
+    (module_call
+      name: (identifier)
+      arguments: (arguments
+        (function
+          parameters: (parameters_declaration
+            (identifier))
+          body: (ternary_expression
+            condition: (identifier)
+            consequence: (string)
+            alternative: (string)))))))
