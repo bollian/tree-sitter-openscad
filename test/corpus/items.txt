@@ -6,6 +6,12 @@ include <other_file.scad>;
 use <multiline
 valid.scad>;
 
+/* [Tweaks for My Model] some extra comments */
+my_parameter = 10;
+
+// [This is not a Customizer Group]
+another_parameter = false;
+
 function square(x) = x * x;
 
 module my_cylinder(r, height = square(4), $fn = 100)
@@ -22,6 +28,14 @@ module big_module() {}
     (include_path))
   (include_statement
     (include_path))
+  (comment)
+  (assignment
+    left: (identifier)
+    right: (number))
+  (comment)
+  (assignment
+    left: (identifier)
+    right: (boolean))
   (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
@@ -82,3 +96,48 @@ module big_module() {
           (module_call
             name: (identifier)
             arguments: (arguments)))))))
+
+================================================================================
+Comments
+================================================================================
+/* ignored [Customizer Group] ignored */
+my_parameter = 5;
+
+function math(x) = /*do math stuff*/ x + 2 // done with math
+;
+
+module my_cylinder() {
+  // here we create a cylinder
+  cylinder(); /* done ! */
+  cube();
+}
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (assignment
+    left: (identifier)
+    right: (number))
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
+    (comment)
+    (binary_expression
+      left: (identifier)
+      right: (number)))
+  (comment)
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration)
+    body: (union_block
+      (comment)
+      (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments)))
+      (comment)
+      (transform_chain
+        (module_call
+          name: (identifier)
+          arguments: (arguments))))))

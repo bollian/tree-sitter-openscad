@@ -31,11 +31,15 @@ const identifier_pattern = /[a-zA-Z_]\w*/;
 const rules = {
   source_file: $ => repeat(choice($.include_statement, $._item)),
 
-  // comments
-  comment: $ => choice($._single_line_comment, $._block_comment),
-  _single_line_comment: $ => /\/\/[^\n]*/,
-  _block_comment: $ => seq('/*', repeat(choice(/[^*\[]|\*[^/]/, $.customizer_group)), '*/'),
-  customizer_group: $ => /\[[^\]]*\]/,
+  // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+  comment: $ => token(choice(
+    seq('//', /(\\(.|\r?\n)|[^\\\n])*/),
+    seq(
+      '/*',
+      /[^*]*\*+([^/*][^*]*\*+)*/,
+      '/'
+    )
+  )),
 
   // use/include statements
   // These are called statements, but aren't included in $._statement because
@@ -43,6 +47,13 @@ const rules = {
   // items.
   include_statement: $ => seq(choice('use', 'include'), $.include_path, ';'),
   include_path: $ => /<[^>]*>/,
+
+  _item: $ => choice(
+    seq($.assignment, ';'),
+    $._statement,
+    $.module_declaration,
+    $.function_declaration,
+  ),
 
   // modules
   module_declaration: $ => seq(
@@ -54,20 +65,13 @@ const rules = {
   parameters_declaration: $ => parens(commaSep($._parameter_declaration)),
   _parameter_declaration: $ => choice($._variable_name, $.assignment),
 
-  // function declarations
+  // function declarations are slightly different from $.function, which is for
+  // function literals
   function_declaration: $ => seq(
     'function',
     field('name', $.identifier),
     field('parameters', $.parameters_declaration),
     '=', $._expression
-  ),
-
-  _item: $ => choice(
-    seq($.assignment, ';'),
-    $._statement,
-    $.comment,
-    $.module_declaration,
-    $.function_declaration,
   ),
 
   // statements are language constructs that can create objects
@@ -238,5 +242,9 @@ module.exports = grammar({
   name: 'openscad',
   word: $ => $.identifier,
   supertypes: $ => [$._literal, $._expression],
+  extras: $ => [
+    /\s|\\\r?\n/,
+    $.comment
+  ],
   rules: rules,
 });
