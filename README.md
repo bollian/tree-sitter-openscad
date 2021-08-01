@@ -1,3 +1,3 @@
 # tree-sitter-openscad
 
-An OpenSCAD grammar built using tree-sitter.
+OpenSCAD grammar for the tree-sitter parsing library
