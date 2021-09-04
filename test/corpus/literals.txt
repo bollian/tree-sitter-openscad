@@ -5,6 +5,7 @@ num = -4.3;
 name = "Karl";
 boolean = true;
 list = [1, 2, each [3, 4], [5, 6]];
+trailing_comma_list = [[1, 2,],];
 range = [1:num:-10];
 fn = function(x, y) x + y;
 comprehension = [for (x = 0; x < 5; x = x + 2) 12];
@@ -30,6 +31,12 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
         (list
           (number)
           (number)))
+      (list
+        (number)
+        (number))))
+  (assignment
+    left: (identifier)
+    right: (list
       (list
         (number)
         (number))))
