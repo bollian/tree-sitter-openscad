@@ -167,7 +167,6 @@ const rules = {
     $.function,
     $.range,
     $.list,
-    $.list_comprehension,
   ),
   string: $ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
   number: $ => /\d+\.\d*|\.\d+|\d+/,
@@ -186,22 +185,22 @@ const rules = {
   )),
 
   list: $ => brackets(seq(commaSep($._list_cell), optional(','))),
-  _list_cell: $ => choice($._expression, $.each),
+  _list_cell: $ => choice($._expression, $.each, $.list_comprehension),
   each: $ => seq('each', $._literal),
 
-  list_comprehension: $ => brackets(seq(
+  list_comprehension: $ => seq(
     $.for_clause,
     choice($.if_clause, $._list_cell),
-  )),
+  ),
   for_clause: $ => seq('for', choice($.parenthesized_assignments, $.condition_update_clause)),
-  if_clause: $ => seq(
+  if_clause: $ => prec.right(seq(
     'if',
     field('condition', $.parenthesized_expression),
     field('consequence', $._list_cell),
     optional(
       seq('else', field('alternative', choice($._list_cell, $.if_clause)))
     )
-  ),
+  )),
 
   // operations on expressions
   function_call: $ => prec(10, seq(field('function', $._expression), field('arguments', $.arguments))),
