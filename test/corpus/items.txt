@@ -19,6 +19,10 @@ module my_cylinder(r, height = square(4), $fn = 100)
 
 module big_module() {}
 
+function comma0(,) = 0;
+function comma1(x,) = 0;
+module comma0(,) {}
+module comma1(x,) {}
 --------------------------------------------------------------------------------
 
 (source_file
@@ -69,6 +73,24 @@ module big_module() {}
   (module_declaration
     name: (identifier)
     parameters: (parameters_declaration)
+    body: (union_block))
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration)
+    (number))
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
+    (number))
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration)
+    body: (union_block))
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
     body: (union_block)))
 
 ================================================================================

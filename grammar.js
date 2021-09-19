@@ -62,7 +62,7 @@ const rules = {
     field('parameters', $.parameters_declaration),
     field('body', $._statement),
   ),
-  parameters_declaration: $ => parens(commaSep($._parameter_declaration)),
+  parameters_declaration: $ => parens(seq(commaSep($._parameter_declaration), optional(','))),
   _parameter_declaration: $ => choice($._variable_name, $.assignment),
 
   // function declarations are slightly different from $.function, which is for
@@ -167,7 +167,6 @@ const rules = {
     $.function,
     $.range,
     $.list,
-    $.list_comprehension,
   ),
   string: $ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
   number: $ => /\d+\.\d*|\.\d+|\d+/,
@@ -185,23 +184,23 @@ const rules = {
     ':', field('end', $._expression),
   )),
 
-  list: $ => brackets(commaSep($._list_cell)),
-  _list_cell: $ => choice($._expression, $.each),
+  list: $ => brackets(seq(commaSep($._list_cell), optional(','))),
+  _list_cell: $ => choice($._expression, $.each, $.list_comprehension),
   each: $ => seq('each', $._literal),
 
-  list_comprehension: $ => brackets(seq(
+  list_comprehension: $ => seq(
     $.for_clause,
     choice($.if_clause, $._list_cell),
-  )),
+  ),
   for_clause: $ => seq('for', choice($.parenthesized_assignments, $.condition_update_clause)),
-  if_clause: $ => seq(
+  if_clause: $ => prec.right(seq(
     'if',
     field('condition', $.parenthesized_expression),
     field('consequence', $._list_cell),
     optional(
       seq('else', field('alternative', choice($._list_cell, $.if_clause)))
     )
-  ),
+  )),
 
   // operations on expressions
   function_call: $ => prec(10, seq(field('function', $._expression), field('arguments', $.arguments))),

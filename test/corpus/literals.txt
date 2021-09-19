@@ -5,6 +5,7 @@ num = -4.3;
 name = "Karl";
 boolean = true;
 list = [1, 2, each [3, 4], [5, 6]];
+trailing_comma_list = [[1, 2,],];
 range = [1:num:-10];
 fn = function(x, y) x + y;
 comprehension = [for (x = 0; x < 5; x = x + 2) 12];
@@ -35,6 +36,12 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
         (number))))
   (assignment
     left: (identifier)
+    right: (list
+      (list
+        (number)
+        (number))))
+  (assignment
+    left: (identifier)
     right: (range
       start: (number)
       increment: (identifier)
@@ -51,21 +58,22 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
         right: (identifier))))
   (assignment
     left: (identifier)
-    right: (list_comprehension
-      (for_clause
-        (condition_update_clause
-          initializer: (assignment
-            left: (identifier)
-            right: (number))
-          condition: (binary_expression
-            left: (identifier)
-            right: (number))
-          update: (assignment
-            left: (identifier)
-            right: (binary_expression
+    right: (list
+      (list_comprehension
+        (for_clause
+          (condition_update_clause
+            initializer: (assignment
               left: (identifier)
-              right: (number)))))
-      (number))))
+              right: (number))
+            condition: (binary_expression
+              left: (identifier)
+              right: (number))
+            update: (assignment
+              left: (identifier)
+              right: (binary_expression
+                left: (identifier)
+                right: (number)))))
+        (number)))))
 
 ================================================================================
 Comprehensions
@@ -73,79 +81,179 @@ Comprehensions
 conditionless = [for (x = [1:10]) x];
 conditioned = [for (x = [1:10]) if ($preview) x];
 ifelse = [for (x = [1:10]) if ($preview) x else ln(x)];
+if_for_ifelse = [for (x = 0) if (x < 0) for (y = 2) if (y == 2) y else x];
 complex_condition = [
     for (x = [1:10]) if (x % 2 == 0) x else if (x < 5) x - 1 else 0
 ];
+spliced = [for (x = [1:10]) x, for (y = [1, 2, 3]) y, for (z = [4, 5, 6]) z];
+nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
 --------------------------------------------------------------------------------
 
 (source_file
   (assignment
     left: (identifier)
-    right: (list_comprehension
-      (for_clause
-        (parenthesized_assignments
-          (assignment
-            left: (identifier)
-            right: (range
-              start: (number)
-              end: (number)))))
-      (identifier)))
-  (assignment
-    left: (identifier)
-    right: (list_comprehension
-      (for_clause
-        (parenthesized_assignments
-          (assignment
-            left: (identifier)
-            right: (range
-              start: (number)
-              end: (number)))))
-      (if_clause
-        condition: (parenthesized_expression
-          (special_variable))
-        consequence: (identifier))))
-  (assignment
-    left: (identifier)
-    right: (list_comprehension
-      (for_clause
-        (parenthesized_assignments
-          (assignment
-            left: (identifier)
-            right: (range
-              start: (number)
-              end: (number)))))
-      (if_clause
-        condition: (parenthesized_expression
-          (special_variable))
-        consequence: (identifier)
-        alternative: (function_call
-          function: (identifier)
-          arguments: (arguments
-            (identifier))))))
-  (assignment
-    left: (identifier)
-    right: (list_comprehension
-      (for_clause
-        (parenthesized_assignments
-          (assignment
-            left: (identifier)
-            right: (range
-              start: (number)
-              end: (number)))))
-      (if_clause
-        condition: (parenthesized_expression
-          (binary_expression
-            left: (binary_expression
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
               left: (identifier)
-              right: (number))
-            right: (number)))
-        consequence: (identifier)
-        alternative: (if_clause
+              right: (range
+                start: (number)
+                end: (number)))))
+        (identifier))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (range
+                start: (number)
+                end: (number)))))
+        (if_clause
+          condition: (parenthesized_expression
+            (special_variable))
+          consequence: (identifier)))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (range
+                start: (number)
+                end: (number)))))
+        (if_clause
+          condition: (parenthesized_expression
+            (special_variable))
+          consequence: (identifier)
+          alternative: (function_call
+            function: (identifier)
+            arguments: (arguments
+              (identifier)))))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (number))))
+        (if_clause
           condition: (parenthesized_expression
             (binary_expression
               left: (identifier)
               right: (number)))
-          consequence: (binary_expression
-            left: (identifier)
-            right: (number))
-          alternative: (number))))))
+          consequence: (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  left: (identifier)
+                  right: (number))))
+            (if_clause
+              condition: (parenthesized_expression
+                (binary_expression
+                  left: (identifier)
+                  right: (number)))
+              consequence: (identifier)
+              alternative: (identifier)))))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (range
+                start: (number)
+                end: (number)))))
+        (if_clause
+          condition: (parenthesized_expression
+            (binary_expression
+              left: (binary_expression
+                left: (identifier)
+                right: (number))
+              right: (number)))
+          consequence: (identifier)
+          alternative: (if_clause
+            condition: (parenthesized_expression
+              (binary_expression
+                left: (identifier)
+                right: (number)))
+            consequence: (binary_expression
+              left: (identifier)
+              right: (number))
+            alternative: (number))))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (range
+                start: (number)
+                end: (number)))))
+        (identifier))
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (list
+                (number)
+                (number)
+                (number)))))
+        (identifier))
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (list
+                (number)
+                (number)
+                (number)))))
+        (identifier))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (range
+                start: (number)
+                end: (number)))))
+        (list_comprehension
+          (for_clause
+            (parenthesized_assignments
+              (assignment
+                left: (identifier)
+                right: (list
+                  (number)
+                  (number)
+                  (number)))))
+          (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  left: (identifier)
+                  right: (list
+                    (number)
+                    (number)
+                    (number)))))
+            (binary_expression
+              left: (binary_expression
+                left: (identifier)
+                right: (identifier))
+              right: (identifier))))))))

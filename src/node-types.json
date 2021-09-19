@@ -66,10 +66,6 @@
         "named": true
       },
       {
-        "type": "list_comprehension",
-        "named": true
-      },
-      {
         "type": "number",
         "named": true
       },
@@ -583,6 +579,10 @@
           {
             "type": "if_clause",
             "named": true
+          },
+          {
+            "type": "list_comprehension",
+            "named": true
           }
         ]
       },
@@ -606,6 +606,10 @@
           },
           {
             "type": "each",
+            "named": true
+          },
+          {
+            "type": "list_comprehension",
             "named": true
           }
         ]
@@ -810,6 +814,10 @@
         {
           "type": "each",
           "named": true
+        },
+        {
+          "type": "list_comprehension",
+          "named": true
         }
       ]
     }
@@ -836,6 +844,10 @@
         },
         {
           "type": "if_clause",
+          "named": true
+        },
+        {
+          "type": "list_comprehension",
           "named": true
         }
       ]
