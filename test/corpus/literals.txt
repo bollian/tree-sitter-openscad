@@ -81,6 +81,7 @@ Comprehensions
 conditionless = [for (x = [1:10]) x];
 conditioned = [for (x = [1:10]) if ($preview) x];
 ifelse = [for (x = [1:10]) if ($preview) x else ln(x)];
+if_for_ifelse = [for (x = 0) if (x < 0) for (y = 2) if (y == 2) y else x];
 complex_condition = [
     for (x = [1:10]) if (x % 2 == 0) x else if (x < 5) x - 1 else 0
 ];
@@ -135,6 +136,33 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
             function: (identifier)
             arguments: (arguments
               (identifier)))))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (number))))
+        (if_clause
+          condition: (parenthesized_expression
+            (binary_expression
+              left: (identifier)
+              right: (number)))
+          consequence: (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  left: (identifier)
+                  right: (number))))
+            (if_clause
+              condition: (parenthesized_expression
+                (binary_expression
+                  left: (identifier)
+                  right: (number)))
+              consequence: (identifier)
+              alternative: (identifier)))))))
   (assignment
     left: (identifier)
     right: (list
