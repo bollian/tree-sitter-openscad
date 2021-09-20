@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-openscad",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Incremental parser for OpenSCAD",
   "repository": "https://github.com/bollian/tree-sitter-openscad.git",
   "main": "bindings/node",
@@ -19,7 +19,7 @@
     "nan": "^2.14.2"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.19.5"
+    "tree-sitter-cli": "^0.20"
   },
   "tree-sitter": [
     {

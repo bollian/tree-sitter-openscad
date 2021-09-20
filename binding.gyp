@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "tree_sitter_scad_binding",
+      "target_name": "tree_sitter_openscad_binding",
       "include_dirs": [
         "<!(node -e \"require('nan')\")",
         "src"
