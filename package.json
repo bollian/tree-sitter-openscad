@@ -13,7 +13,7 @@
     "lexer",
     "openscad"
   ],
-  "author": "Ian Boll <lordofthemaracas@gmail.com>",
+  "author": "Ian Boll <mainbollian@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "nan": "^2.14.2"
