@@ -946,8 +946,25 @@
       }
     },
     "number": {
-      "type": "PATTERN",
-      "value": "\\d+\\.\\d*|\\.\\d+|\\d+"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\d+\\.\\d*|\\.\\d+|\\d+"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "e-?\\d+"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "boolean": {
       "type": "CHOICE",

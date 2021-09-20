@@ -257,3 +257,28 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
                 left: (identifier)
                 right: (identifier))
               right: (identifier))))))))
+
+================================================================================
+Numbers
+================================================================================
+i = 5;
+f  = -0.0;
+ie = 10e10;
+full = -2.3e-4;
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (number))
+  (assignment
+    (identifier)
+    (unary_expression
+      (number)))
+  (assignment
+    (identifier)
+    (number))
+  (assignment
+    (identifier)
+    (unary_expression
+      (number))))

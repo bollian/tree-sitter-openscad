@@ -1000,6 +1000,11 @@
     }
   },
   {
+    "type": "number",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "parameters_declaration",
     "named": true,
     "fields": {},
@@ -1455,10 +1460,6 @@
   {
     "type": "module",
     "named": false
-  },
-  {
-    "type": "number",
-    "named": true
   },
   {
     "type": "special_variable",

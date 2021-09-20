@@ -169,7 +169,7 @@ const rules = {
     $.list,
   ),
   string: $ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
-  number: $ => /\d+\.\d*|\.\d+|\d+/,
+  number: $ => seq(/\d+\.\d*|\.\d+|\d+/, optional(/e-?\d+/)),
   boolean: $ => choice('true', 'false'),
 
   // compound atoms that are still literals
