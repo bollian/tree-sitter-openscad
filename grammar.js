@@ -45,7 +45,7 @@ const rules = {
   // These are called statements, but aren't included in $._statement because
   // they can't be used in all the same places as other statements or even other
   // items.
-  include_statement: $ => seq(choice('use', 'include'), $.include_path, ';'),
+  include_statement: $ => seq(choice('use', 'include'), $.include_path, optional(';')),
   include_path: $ => /<[^>]*>/,
 
   _item: $ => choice(
