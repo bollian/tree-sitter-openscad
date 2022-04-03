@@ -1,6 +1,8 @@
 ================================================================================
 Basic Items
 ================================================================================
+use <no_semi_file.scad>
+include <no_semi_file.scad>
 use <other_file.scad>;
 include <other_file.scad>;
 use <multiline
@@ -26,6 +28,10 @@ module comma1(x,) {}
 --------------------------------------------------------------------------------
 
 (source_file
+  (include_statement
+    (include_path))
+  (include_statement
+    (include_path))
   (include_statement
     (include_path))
   (include_statement
