@@ -16,7 +16,8 @@
   "author": "Ian Boll <mainbollian@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "nan": "^2.14.2"
+    "nan": "^2.14.2",
+    "npm": "^8.6.0"
   },
   "devDependencies": {
     "tree-sitter-cli": "^0.20"
