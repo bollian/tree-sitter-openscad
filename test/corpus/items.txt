@@ -28,15 +28,15 @@ module comma1(x,) {}
 --------------------------------------------------------------------------------
 
 (source_file
-  (include_statement
+  (use_statement
     (include_path))
   (include_statement
     (include_path))
-  (include_statement
+  (use_statement
     (include_path))
   (include_statement
     (include_path))
-  (include_statement
+  (use_statement
     (include_path))
   (comment)
   (assignment
@@ -106,6 +106,9 @@ module big_module() {
   function inner_function() = undef;
   module inner_module() cube();
 }
+
+module extern_module() include <other_file.scad>
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -123,7 +126,12 @@ module big_module() {
         body: (transform_chain
           (module_call
             name: (identifier)
-            arguments: (arguments)))))))
+            arguments: (arguments))))))
+  (module_declaration
+    name: (identifier)
+    parameters: (parameters_declaration)
+    body: (include_statement
+      (include_path))))
 
 ================================================================================
 Comments

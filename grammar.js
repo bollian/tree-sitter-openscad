@@ -29,7 +29,7 @@ function binary_operator(operator, rule) {
 const identifier_pattern = /[a-zA-Z_]\w*/;
 
 const rules = {
-  source_file: $ => repeat(choice($.include_statement, $._item)),
+  source_file: $ => repeat(choice($.use_statement, $._item)),
 
   // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
   comment: $ => token(choice(
@@ -40,13 +40,6 @@ const rules = {
       '/'
     )
   )),
-
-  // use/include statements
-  // These are called statements, but aren't included in $._statement because
-  // they can't be used in all the same places as other statements or even other
-  // items.
-  include_statement: $ => prec.left(seq(choice('use', 'include'), $.include_path, optional(';'))),
-  include_path: $ => /<[^>]*>/,
 
   _item: $ => choice(
     seq($.assignment, ';'),
@@ -84,8 +77,16 @@ const rules = {
     $.union_block,
     $.modifier_chain,
     $.transform_chain,
+    $.include_statement,
     ';',
   ),
+  // use/include statements
+  // These are called statements, but use statements aren't included in
+  // $._statement because they can't be used in all the same places as other
+  // statements
+  include_statement: $ => seq('include', $.include_path),
+  use_statement: $ => seq('use', $.include_path),
+  include_path: $ => /<[^>]*>/,
   assignment: $ => seq(
     field('left', $._variable_name),
     '=',

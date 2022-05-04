@@ -9,7 +9,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "include_statement"
+            "name": "use_statement"
           },
           {
             "type": "SYMBOL",
@@ -45,7 +45,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
               },
               {
                 "type": "STRING",
@@ -55,48 +55,6 @@
           }
         ]
       }
-    },
-    "include_statement": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "use"
-              },
-              {
-                "type": "STRING",
-                "value": "include"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "include_path"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ";"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "include_path": {
-      "type": "PATTERN",
-      "value": "<[^>]*>"
     },
     "_item": {
       "type": "CHOICE",
@@ -306,10 +264,44 @@
           "name": "transform_chain"
         },
         {
+          "type": "SYMBOL",
+          "name": "include_statement"
+        },
+        {
           "type": "STRING",
           "value": ";"
         }
       ]
+    },
+    "include_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "include"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "include_path"
+        }
+      ]
+    },
+    "use_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "use"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "include_path"
+        }
+      ]
+    },
+    "include_path": {
+      "type": "PATTERN",
+      "value": "<[^>]*>"
     },
     "assignment": {
       "type": "SEQ",
