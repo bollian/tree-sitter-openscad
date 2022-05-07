@@ -72,8 +72,8 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
               left: (identifier)
               right: (binary_expression
                 left: (identifier)
-                right: (number)))))
-        (number)))))
+                right: (number))))
+          (number))))))
 
 ================================================================================
 Comprehensions
@@ -100,8 +100,8 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               left: (identifier)
               right: (range
                 start: (number)
-                end: (number)))))
-        (identifier))))
+                end: (number))))
+          (identifier)))))
   (assignment
     left: (identifier)
     right: (list
@@ -112,11 +112,12 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               left: (identifier)
               right: (range
                 start: (number)
-                end: (number)))))
-        (if_clause
-          condition: (parenthesized_expression
-            (special_variable))
-          consequence: (identifier)))))
+                end: (number))))
+          (list_comprehension
+            (if_clause
+              condition: (parenthesized_expression
+                (special_variable))
+              consequence: (identifier)))))))
   (assignment
     left: (identifier)
     right: (list
@@ -127,15 +128,16 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               left: (identifier)
               right: (range
                 start: (number)
-                end: (number)))))
-        (if_clause
-          condition: (parenthesized_expression
-            (special_variable))
-          consequence: (identifier)
-          alternative: (function_call
-            function: (identifier)
-            arguments: (arguments
-              (identifier)))))))
+                end: (number))))
+          (list_comprehension
+            (if_clause
+              condition: (parenthesized_expression
+                (special_variable))
+              consequence: (identifier)
+              alternative: (function_call
+                function: (identifier)
+                arguments: (arguments
+                  (identifier)))))))))
   (assignment
     left: (identifier)
     right: (list
@@ -143,26 +145,58 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
         (for_clause
           (parenthesized_assignments
             (assignment
-              left: (identifier)
-              right: (number))))
-        (if_clause
-          condition: (parenthesized_expression
-            (binary_expression
               left: (identifier)
               right: (number)))
-          consequence: (list_comprehension
-            (for_clause
-              (parenthesized_assignments
-                (assignment
-                  left: (identifier)
-                  right: (number))))
+          (list_comprehension
             (if_clause
               condition: (parenthesized_expression
                 (binary_expression
                   left: (identifier)
                   right: (number)))
+              consequence: (list_comprehension
+                (for_clause
+                  (parenthesized_assignments
+                    (assignment
+                      left: (identifier)
+                      right: (number)))
+                  (list_comprehension
+                    (if_clause
+                      condition: (parenthesized_expression
+                        (binary_expression
+                          left: (identifier)
+                          right: (number)))
+                      consequence: (identifier)
+                      alternative: (identifier)))))))))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (for_clause
+          (parenthesized_assignments
+            (assignment
+              left: (identifier)
+              right: (range
+                start: (number)
+                end: (number))))
+          (list_comprehension
+            (if_clause
+              condition: (parenthesized_expression
+                (binary_expression
+                  left: (binary_expression
+                    left: (identifier)
+                    right: (number))
+                  right: (number)))
               consequence: (identifier)
-              alternative: (identifier)))))))
+              alternative: (list_comprehension
+                (if_clause
+                  condition: (parenthesized_expression
+                    (binary_expression
+                      left: (identifier)
+                      right: (number)))
+                  consequence: (binary_expression
+                    left: (identifier)
+                    right: (number))
+                  alternative: (number)))))))))
   (assignment
     left: (identifier)
     right: (list
@@ -173,36 +207,8 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               left: (identifier)
               right: (range
                 start: (number)
-                end: (number)))))
-        (if_clause
-          condition: (parenthesized_expression
-            (binary_expression
-              left: (binary_expression
-                left: (identifier)
-                right: (number))
-              right: (number)))
-          consequence: (identifier)
-          alternative: (if_clause
-            condition: (parenthesized_expression
-              (binary_expression
-                left: (identifier)
-                right: (number)))
-            consequence: (binary_expression
-              left: (identifier)
-              right: (number))
-            alternative: (number))))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number)))))
-        (identifier))
+                end: (number))))
+          (identifier)))
       (list_comprehension
         (for_clause
           (parenthesized_assignments
@@ -211,8 +217,8 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               right: (list
                 (number)
                 (number)
-                (number)))))
-        (identifier))
+                (number))))
+          (identifier)))
       (list_comprehension
         (for_clause
           (parenthesized_assignments
@@ -221,8 +227,8 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               right: (list
                 (number)
                 (number)
-                (number)))))
-        (identifier))))
+                (number))))
+          (identifier)))))
   (assignment
     left: (identifier)
     right: (list
@@ -233,16 +239,7 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
               left: (identifier)
               right: (range
                 start: (number)
-                end: (number)))))
-        (list_comprehension
-          (for_clause
-            (parenthesized_assignments
-              (assignment
-                left: (identifier)
-                right: (list
-                  (number)
-                  (number)
-                  (number)))))
+                end: (number))))
           (list_comprehension
             (for_clause
               (parenthesized_assignments
@@ -251,12 +248,21 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
                   right: (list
                     (number)
                     (number)
-                    (number)))))
-            (binary_expression
-              left: (binary_expression
-                left: (identifier)
-                right: (identifier))
-              right: (identifier))))))))
+                    (number))))
+              (list_comprehension
+                (for_clause
+                  (parenthesized_assignments
+                    (assignment
+                      left: (identifier)
+                      right: (list
+                        (number)
+                        (number)
+                        (number))))
+                  (binary_expression
+                    left: (binary_expression
+                      left: (identifier)
+                      right: (identifier))
+                    right: (identifier)))))))))))
 
 ================================================================================
 Numbers

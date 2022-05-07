@@ -190,16 +190,15 @@ const rules = {
   each: $ => seq('each', $._literal),
 
   list_comprehension: $ => seq(
-    $.for_clause,
-    choice($.if_clause, $._list_cell),
+    choice($.for_clause, $.if_clause)
   ),
-  for_clause: $ => seq('for', choice($.parenthesized_assignments, $.condition_update_clause)),
+  for_clause: $ => seq('for', choice($.parenthesized_assignments, $.condition_update_clause), $._list_cell),
   if_clause: $ => prec.right(seq(
     'if',
     field('condition', $.parenthesized_expression),
     field('consequence', $._list_cell),
     optional(
-      seq('else', field('alternative', choice($._list_cell, $.if_clause)))
+      seq('else', field('alternative', $._list_cell))
     )
   )),
 

@@ -362,11 +362,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "_expression",
+          "named": true
+        },
+        {
           "type": "condition_update_clause",
+          "named": true
+        },
+        {
+          "type": "each",
+          "named": true
+        },
+        {
+          "type": "list_comprehension",
           "named": true
         },
         {
@@ -590,10 +602,6 @@
           },
           {
             "type": "each",
-            "named": true
-          },
-          {
-            "type": "if_clause",
             "named": true
           },
           {
@@ -851,27 +859,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "each",
-          "named": true
-        },
         {
           "type": "for_clause",
           "named": true
         },
         {
           "type": "if_clause",
-          "named": true
-        },
-        {
-          "type": "list_comprehension",
           "named": true
         }
       ]

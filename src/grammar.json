@@ -1168,19 +1168,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "for_clause"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "if_clause"
+              "name": "for_clause"
             },
             {
               "type": "SYMBOL",
-              "name": "_list_cell"
+              "name": "if_clause"
             }
           ]
         }
@@ -1205,6 +1201,10 @@
               "name": "condition_update_clause"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_list_cell"
         }
       ]
     },
@@ -1248,17 +1248,8 @@
                     "type": "FIELD",
                     "name": "alternative",
                     "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "_list_cell"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "if_clause"
-                        }
-                      ]
+                      "type": "SYMBOL",
+                      "name": "_list_cell"
                     }
                   }
                 ]
