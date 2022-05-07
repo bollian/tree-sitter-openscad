@@ -87,6 +87,7 @@ complex_condition = [
 ];
 spliced = [for (x = [1:10]) x, for (y = [1, 2, 3]) y, for (z = [4, 5, 6]) z];
 nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
+grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
 --------------------------------------------------------------------------------
 
 (source_file
@@ -262,7 +263,32 @@ nested = [for (x = [1:10]) for (y = [1, 2, 3]) for (z = [4, 5, 6]) x * y * z];
                     left: (binary_expression
                       left: (identifier)
                       right: (identifier))
-                    right: (identifier)))))))))))
+                    right: (identifier))))))))))
+  (assignment
+    left: (identifier)
+    right: (list
+      (list_comprehension
+        (if_clause
+          condition: (parenthesized_expression
+            (binary_expression
+              left: (identifier)
+              right: (number)))
+          consequence: (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  left: (identifier)
+                  right: (range
+                    start: (number)
+                    end: (number))))
+              (list_comprehension
+                (if_clause
+                  condition: (parenthesized_expression
+                    (binary_expression
+                      left: (identifier)
+                      right: (identifier)))
+                  consequence: (identifier)))))
+          alternative: (identifier))))))
 
 ================================================================================
 Numbers

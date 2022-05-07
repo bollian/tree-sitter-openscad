@@ -6,6 +6,10 @@ function commaSep(rule) {
   return optional(commaSep1(rule))
 }
 
+function opt_grouping(grouping, rule) {
+  return choice(grouping(rule), rule)
+}
+
 function parens(rule) {
   return seq('(', rule, ')')
 }
@@ -187,18 +191,26 @@ const rules = {
 
   list: $ => brackets(seq(commaSep($._list_cell), optional(','))),
   _list_cell: $ => choice($._expression, $.each, $.list_comprehension),
+  _comprehension_cell: $ => choice(
+    $._expression,
+    opt_grouping(parens, $.each),
+    opt_grouping(parens, $.list_comprehension)
+  ),
   each: $ => seq('each', $._literal),
 
   list_comprehension: $ => seq(
     choice($.for_clause, $.if_clause)
   ),
-  for_clause: $ => seq('for', choice($.parenthesized_assignments, $.condition_update_clause), $._list_cell),
+  for_clause: $ => seq('for',
+    choice($.parenthesized_assignments, $.condition_update_clause),
+    $._comprehension_cell
+  ),
   if_clause: $ => prec.right(seq(
     'if',
     field('condition', $.parenthesized_expression),
-    field('consequence', $._list_cell),
+    field('consequence', $._comprehension_cell),
     optional(
-      seq('else', field('alternative', $._list_cell))
+      seq('else', field('alternative', $._comprehension_cell))
     )
   )),
 

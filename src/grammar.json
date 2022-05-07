@@ -1151,6 +1151,67 @@
         }
       ]
     },
+    "_comprehension_cell": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "each"
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "each"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "list_comprehension"
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "list_comprehension"
+            }
+          ]
+        }
+      ]
+    },
     "each": {
       "type": "SEQ",
       "members": [
@@ -1204,7 +1265,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_list_cell"
+          "name": "_comprehension_cell"
         }
       ]
     },
@@ -1231,7 +1292,7 @@
             "name": "consequence",
             "content": {
               "type": "SYMBOL",
-              "name": "_list_cell"
+              "name": "_comprehension_cell"
             }
           },
           {
@@ -1249,7 +1310,7 @@
                     "name": "alternative",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "_list_cell"
+                      "name": "_comprehension_cell"
                     }
                   }
                 ]
