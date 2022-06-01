@@ -48,12 +48,12 @@ named_index = [1, 2, 3, 4].x;
   (assignment
     left: (identifier)
     right: (dot_index_expression
-      (list
+      value: (list
         (number)
         (number)
         (number)
         (number))
-      (identifier))))
+      index: (identifier))))
 
 ================================================================================
 Logical Precedence

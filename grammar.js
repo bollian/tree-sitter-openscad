@@ -220,7 +220,10 @@ const rules = {
     field('value', $._expression),
     brackets(field('index', $._expression))
   )),
-  dot_index_expression: $ => prec(10, seq($._expression, '.', $.identifier)),
+  dot_index_expression: $ => prec(10, seq(
+    field('value', $._expression), '.',
+    field('index', $.identifier)
+  )),
   unary_expression: $ => choice(
     prec(9, seq('!', $._expression)),
     prec.left(6, seq('-', $._expression)),
