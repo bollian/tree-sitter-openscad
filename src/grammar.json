@@ -905,6 +905,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "undef"
+        },
+        {
+          "type": "SYMBOL",
           "name": "function"
         },
         {
@@ -982,6 +986,10 @@
           "value": "false"
         }
       ]
+    },
+    "undef": {
+      "type": "STRING",
+      "value": "undef"
     },
     "function": {
       "type": "SEQ",

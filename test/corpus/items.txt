@@ -119,7 +119,7 @@ module extern_module() include <other_file.scad>
       (function_declaration
         name: (identifier)
         parameters: (parameters_declaration)
-        (identifier))
+        (undef))
       (module_declaration
         name: (identifier)
         parameters: (parameters_declaration)

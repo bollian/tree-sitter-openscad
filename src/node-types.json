@@ -76,6 +76,10 @@
       {
         "type": "string",
         "named": true
+      },
+      {
+        "type": "undef",
+        "named": true
       }
     ]
   },
@@ -1554,6 +1558,10 @@
   {
     "type": "true",
     "named": false
+  },
+  {
+    "type": "undef",
+    "named": true
   },
   {
     "type": "use",

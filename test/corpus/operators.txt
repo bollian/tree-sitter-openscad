@@ -96,7 +96,7 @@ echo(true && 4 == 4);
         function: (identifier)
         arguments: (arguments
           (identifier)))
-      right: (identifier)))
+      right: (undef)))
   (assignment
     left: (identifier)
     right: (boolean))

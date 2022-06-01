@@ -169,6 +169,7 @@ const rules = {
     $.string,
     $.number,
     $.boolean,
+    $.undef,
     $.function,
     $.range,
     $.list,
@@ -176,6 +177,7 @@ const rules = {
   string: $ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
   number: $ => seq(/\d+\.\d*|\.\d+|\d+/, optional(/e-?\d+/)),
   boolean: $ => choice('true', 'false'),
+  undef: $ => 'undef',
 
   // compound atoms that are still literals
   function: $ => seq(
