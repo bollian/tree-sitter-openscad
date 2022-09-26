@@ -198,7 +198,7 @@ const rules = {
     opt_grouping(parens, $.each),
     opt_grouping(parens, $.list_comprehension)
   ),
-  each: $ => seq('each', $._literal),
+  each: $ => seq('each', choice($.list, $.identifier)),
 
   list_comprehension: $ => seq(
     choice($.for_clause, $.if_clause)
