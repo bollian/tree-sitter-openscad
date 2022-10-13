@@ -45,6 +45,21 @@ const rules = {
     )
   )),
 
+  assert: $ => seq(
+    'assert',
+    parens(
+      seq(
+        $._expression,
+        optional(
+          seq(
+            ',',
+            $.string
+          )
+        )
+      )
+    )
+  ),
+
   _item: $ => choice(
     seq($.assignment, ';'),
     $._statement,
@@ -260,7 +275,8 @@ module.exports = grammar({
   supertypes: $ => [$._literal, $._expression],
   extras: $ => [
     /\s|\\\r?\n/,
-    $.comment
+    $.comment,
+    $.assert
   ],
   rules: rules,
 });

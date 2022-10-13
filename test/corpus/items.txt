@@ -177,3 +177,20 @@ module my_cylinder() {
         (module_call
           name: (identifier)
           arguments: (arguments))))))
+
+================================================================================
+Assert
+================================================================================
+function test(x) = assert(x > 0) x;
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (identifier)
+    parameters: (parameters_declaration
+      (identifier))
+    (assert
+      (binary_expression
+        left: (identifier)
+        right: (number)))
+    (identifier)))

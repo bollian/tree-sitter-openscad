@@ -103,6 +103,25 @@
     }
   },
   {
+    "type": "assert",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign_block",
     "named": true,
     "fields": {
@@ -1493,6 +1512,10 @@
   },
   {
     "type": "^",
+    "named": false
+  },
+  {
+    "type": "assert",
     "named": false
   },
   {
