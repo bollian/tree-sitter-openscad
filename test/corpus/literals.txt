@@ -314,3 +314,91 @@ full = -2.3e-4;
     (identifier)
     (unary_expression
       (number))))
+
+================================================================================
+Each Expansion
+================================================================================
+a = [1, 2, 3];
+list = [1, 2, each a, each ([3, 4]), each 5, each for (x = [1:10]) x];
+str_list = [each false, each [1:2], each undef, each "hello"];
+fn_list = [each function() 10];
+each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (list
+      (number)
+      (number)
+      (number)))
+  (assignment
+    (identifier)
+    (list
+      (number)
+      (number)
+      (each
+        (identifier))
+      (each
+        (parenthesized_expression
+          (list
+            (number)
+            (number))))
+      (each
+        (number))
+      (each
+        (list_comprehension
+          (for_clause
+            (parenthesized_assignments
+              (assignment
+                (identifier)
+                (range
+                  (number)
+                  (number))))
+            (identifier))))))
+  (assignment
+    (identifier)
+    (list
+      (each
+        (boolean))
+      (each
+        (range
+          (number)
+          (number)))
+      (each
+        (undef))
+      (each
+        (string))))
+  (assignment
+    (identifier)
+    (list
+      (each
+        (function
+          (parameters_declaration)
+          (number)))))
+  (assignment
+    (identifier)
+    (list
+      (each
+        (list_comprehension
+          (if_clause
+            (parenthesized_expression
+              (binary_expression
+                (function_call
+                  (identifier)
+                  (arguments
+                    (identifier)))
+                (number)))
+            (number)
+            (number))))
+      (each
+        (list_comprehension
+          (if_clause
+            (parenthesized_expression
+              (binary_expression
+                (function_call
+                  (identifier)
+                  (arguments
+                    (identifier)))
+                (number)))
+            (boolean)))))))
