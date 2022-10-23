@@ -82,6 +82,7 @@ const rules = {
     $.modifier_chain,
     $.transform_chain,
     $.include_statement,
+    $.assert_statement,
     ';',
   ),
   // use/include statements
@@ -154,6 +155,7 @@ const rules = {
     $.function_call,
     $.index_expression,
     $.dot_index_expression,
+    $.assert_expression,
     $._literal,
     $._variable_name,
   ),
@@ -252,6 +254,18 @@ const rules = {
     field('consequence', $._expression), ':',
     field('alternative', $._expression)
   )),
+
+  // Asserts are unusual in that they can be inserted into both statements and
+  // expressions. We want to treat these two cases differently: assertions in
+  // the middle of a statement can only be followed by a statement, and the
+  // same applies to expressions. So, this creates two parsers for the two
+  // distinct conditions, but uses a shared parser for the text of the assert
+  // clause itself.
+  _assert_clause: $ => seq(
+    'assert', parens(field('condition', $._expression))
+  ),
+  assert_statement: $ => seq($._assert_clause, $._statement),
+  assert_expression: $ => seq($._assert_clause, $._expression),
 };
 
 module.exports = grammar({

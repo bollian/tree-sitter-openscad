@@ -294,3 +294,29 @@ echo(function(y) y ? "first" : "second");
             condition: (identifier)
             consequence: (string)
             alternative: (string)))))))
+
+================================================================================
+Assertions
+================================================================================
+fn = function(x) assert(x) x;
+echo(assert(true) assert(false) true);
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (function
+      (parameters_declaration
+        (identifier))
+      (assert_expression
+        (identifier)
+        (identifier))))
+  (transform_chain
+    (module_call
+      (identifier)
+      (arguments
+        (assert_expression
+          (boolean)
+          (assert_expression
+            (boolean)
+            (boolean)))))))

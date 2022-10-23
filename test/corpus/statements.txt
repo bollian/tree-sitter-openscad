@@ -217,3 +217,43 @@ rotate([0, 90, 0]) # cylinder();
       (module_call
         name: (identifier)
         arguments: (arguments)))))
+
+================================================================================
+Assertions
+================================================================================
+x = 10;
+assert(x < 20) cube();
+for (y = [3:5])
+    assert(assert(true) y < x)
+        cylinder();
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment
+    (identifier)
+    (number))
+  (assert_statement
+    (binary_expression
+      (identifier)
+      (number))
+    (transform_chain
+      (module_call
+        (identifier)
+        (arguments))))
+  (for_block
+    (parenthesized_assignments
+      (assignment
+        (identifier)
+        (range
+          (number)
+          (number))))
+    (assert_statement
+      (assert_expression
+        (boolean)
+        (binary_expression
+          (identifier)
+          (identifier)))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments))))))

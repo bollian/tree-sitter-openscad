@@ -8,6 +8,10 @@
         "named": true
       },
       {
+        "type": "assert_expression",
+        "named": true
+      },
+      {
         "type": "binary_expression",
         "named": true
       },
@@ -103,6 +107,76 @@
     }
   },
   {
+    "type": "assert_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assert_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        },
+        {
+          "type": "assert_statement",
+          "named": true
+        },
+        {
+          "type": "assign_block",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "intersection_for_block",
+          "named": true
+        },
+        {
+          "type": "let_block",
+          "named": true
+        },
+        {
+          "type": "modifier_chain",
+          "named": true
+        },
+        {
+          "type": "transform_chain",
+          "named": true
+        },
+        {
+          "type": "union_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign_block",
     "named": true,
     "fields": {
@@ -113,6 +187,10 @@
           {
             "type": ";",
             "named": false
+          },
+          {
+            "type": "assert_statement",
+            "named": true
           },
           {
             "type": "assign_block",
@@ -327,6 +405,10 @@
             "named": false
           },
           {
+            "type": "assert_statement",
+            "named": true
+          },
+          {
             "type": "assign_block",
             "named": true
           },
@@ -508,6 +590,10 @@
             "named": false
           },
           {
+            "type": "assert_statement",
+            "named": true
+          },
+          {
             "type": "assign_block",
             "named": true
           },
@@ -566,6 +652,10 @@
           {
             "type": ";",
             "named": false
+          },
+          {
+            "type": "assert_statement",
+            "named": true
           },
           {
             "type": "assign_block",
@@ -729,6 +819,10 @@
             "named": false
           },
           {
+            "type": "assert_statement",
+            "named": true
+          },
+          {
             "type": "assign_block",
             "named": true
           },
@@ -789,6 +883,10 @@
           {
             "type": ";",
             "named": false
+          },
+          {
+            "type": "assert_statement",
+            "named": true
           },
           {
             "type": "assign_block",
@@ -922,6 +1020,10 @@
       "required": true,
       "types": [
         {
+          "type": "assert_statement",
+          "named": true
+        },
+        {
           "type": "assign_block",
           "named": true
         },
@@ -1001,6 +1103,10 @@
           {
             "type": ";",
             "named": false
+          },
+          {
+            "type": "assert_statement",
+            "named": true
           },
           {
             "type": "assign_block",
@@ -1165,6 +1271,10 @@
       "required": false,
       "types": [
         {
+          "type": "assert_statement",
+          "named": true
+        },
+        {
           "type": "assign_block",
           "named": true
         },
@@ -1264,6 +1374,10 @@
       "required": true,
       "types": [
         {
+          "type": "assert_statement",
+          "named": true
+        },
+        {
           "type": "assign_block",
           "named": true
         },
@@ -1329,6 +1443,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "assert_statement",
+          "named": true
+        },
         {
           "type": "assign_block",
           "named": true
@@ -1493,6 +1611,10 @@
   },
   {
     "type": "^",
+    "named": false
+  },
+  {
+    "type": "assert",
     "named": false
   },
   {
