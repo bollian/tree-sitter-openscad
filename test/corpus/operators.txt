@@ -298,25 +298,34 @@ echo(function(y) y ? "first" : "second");
 ================================================================================
 Assertions
 ================================================================================
+x = assert(true, false, "extra1", "extra2") 5;
 fn = function(x) assert(x) x;
 echo(assert(true) assert(false) true);
 --------------------------------------------------------------------------------
 
 (source_file
   (assignment
-    (identifier)
-    (function
-      (parameters_declaration
+    left: (identifier)
+    right: (assert_expression
+      condition: (boolean)
+      message: (boolean)
+      (string)
+      (string)
+      (number)))
+  (assignment
+    left: (identifier)
+    right: (function
+      parameters: (parameters_declaration
         (identifier))
-      (assert_expression
-        (identifier)
+      body: (assert_expression
+        condition: (identifier)
         (identifier))))
   (transform_chain
     (module_call
-      (identifier)
-      (arguments
+      name: (identifier)
+      arguments: (arguments
         (assert_expression
-          (boolean)
+          condition: (boolean)
           (assert_expression
-            (boolean)
+            condition: (boolean)
             (boolean)))))))

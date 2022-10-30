@@ -261,9 +261,13 @@ const rules = {
   // same applies to expressions. So, this creates two parsers for the two
   // distinct conditions, but uses a shared parser for the text of the assert
   // clause itself.
-  _assert_clause: $ => seq(
-    'assert', parens(field('condition', $._expression))
-  ),
+  _assert_clause: $ => seq('assert', parens(
+    optional(seq(field('condition', $._expression),
+      optional(seq(',', field('message', $._expression),
+        optional(seq(',', field('trailing_args', commaSep1($._expression)))),
+      )),
+    )),
+  )),
   assert_statement: $ => seq($._assert_clause, $._statement),
   assert_expression: $ => seq($._assert_clause, $._expression),
 };

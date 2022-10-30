@@ -224,36 +224,36 @@ Assertions
 x = 10;
 assert(x < 20) cube();
 for (y = [3:5])
-    assert(assert(true) y < x)
+    assert(assert() y < x, "message")
         cylinder();
 --------------------------------------------------------------------------------
 
 (source_file
   (assignment
-    (identifier)
-    (number))
+    left: (identifier)
+    right: (number))
   (assert_statement
-    (binary_expression
-      (identifier)
-      (number))
+    condition: (binary_expression
+      left: (identifier)
+      right: (number))
     (transform_chain
       (module_call
-        (identifier)
-        (arguments))))
+        name: (identifier)
+        arguments: (arguments))))
   (for_block
     (parenthesized_assignments
       (assignment
-        (identifier)
-        (range
-          (number)
-          (number))))
-    (assert_statement
-      (assert_expression
-        (boolean)
+        left: (identifier)
+        right: (range
+          start: (number)
+          end: (number))))
+    body: (assert_statement
+      condition: (assert_expression
         (binary_expression
-          (identifier)
-          (identifier)))
+          left: (identifier)
+          right: (identifier)))
+      message: (string)
       (transform_chain
         (module_call
-          (identifier)
-          (arguments))))))
+          name: (identifier)
+          arguments: (arguments))))))

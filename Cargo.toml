@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-openscad"
 description = "openscad grammar for the tree-sitter parsing library"
-version = "0.4.1"
+version = "0.4.2"
 keywords = ["incremental", "parsing", "openscad"]
 categories = ["parsing", "text-editors"]
 authors = ["Ian Boll <mainbollian@gmail.com>"]
