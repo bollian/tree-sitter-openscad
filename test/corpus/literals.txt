@@ -12,68 +12,83 @@ comprehension = [for (x = 0; x < 5; x = x + 2) 12];
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (unary_expression
-      (number)))
-  (assignment
-    left: (identifier)
-    right: (string))
-  (assignment
-    left: (identifier)
-    right: (boolean))
-  (assignment
-    left: (identifier)
-    right: (list
-      (number)
-      (number)
-      (each
-        (list
-          (number)
-          (number)))
-      (list
-        (number)
-        (number))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list
-        (number)
-        (number))))
-  (assignment
-    left: (identifier)
-    right: (range
-      start: (number)
-      increment: (identifier)
-      end: (unary_expression
-        (number))))
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
+      (assignment
         (identifier)
-        (identifier))
-      body: (binary_expression
-        left: (identifier)
-        right: (identifier))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (condition_update_clause
-            initializer: (assignment
-              left: (identifier)
-              right: (number))
-            condition: (binary_expression
-              left: (identifier)
-              right: (number))
-            update: (assignment
-              left: (identifier)
-              right: (binary_expression
-                left: (identifier)
-                right: (number))))
-          (number))))))
+        (number
+          (float)))
+      (assignment
+        (identifier)
+        (string))
+      (assignment
+        (identifier)
+        (boolean))
+      (assignment
+        (identifier)
+        (list
+          (number
+            (decimal))
+          (number
+            (decimal))
+          (each
+            (list
+              (number
+                (decimal))
+              (number
+                (decimal))))
+          (list
+            (number
+              (decimal))
+            (number
+              (decimal)))))
+      (assignment
+        (identifier)
+        (list
+          (list
+            (number
+              (decimal))
+            (number
+              (decimal)))))
+      (assignment
+        (identifier)
+        (range
+          (number
+            (decimal))
+          (identifier)
+          (number
+            (float))))
+      (assignment
+        (identifier)
+        (function
+          (parameters_declaration
+            (parameter
+              (identifier))
+            (parameter
+              (identifier)))
+          (binary_expression
+            (identifier)
+            (identifier))))
+      (assignment
+        (identifier)
+        (list
+          (list_comprehension
+            (for_clause
+              (condition_update_clause
+                (assignment
+                  (identifier)
+                  (number
+                    (decimal)))
+                (binary_expression
+                  (identifier)
+                  (number
+                    (decimal)))
+                (assignment
+                  (identifier)
+                  (binary_expression
+                    (identifier)
+                    (number
+                      (decimal)))))
+              (number
+                (decimal)))))))
 
 ================================================================================
 Comprehensions
@@ -91,204 +106,240 @@ grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number))))
-          (identifier)))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number))))
+      (assignment
+        (identifier)
+        (list
           (list_comprehension
-            (if_clause
-              condition: (parenthesized_expression
-                (special_variable))
-              consequence: (identifier)))))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number))))
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (range
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (identifier)))))
+      (assignment
+        (identifier)
+        (list
           (list_comprehension
-            (if_clause
-              condition: (parenthesized_expression
-                (special_variable))
-              consequence: (identifier)
-              alternative: (function_call
-                function: (identifier)
-                arguments: (arguments
-                  (identifier)))))))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (number)))
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (range
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (list_comprehension
+                (if_clause
+                  (parenthesized_expression
+                    (special_variable))
+                  (identifier)))))))
+      (assignment
+        (identifier)
+        (list
           (list_comprehension
-            (if_clause
-              condition: (parenthesized_expression
-                (binary_expression
-                  left: (identifier)
-                  right: (number)))
-              consequence: (list_comprehension
-                (for_clause
-                  (parenthesized_assignments
-                    (assignment
-                      left: (identifier)
-                      right: (number)))
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (range
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (list_comprehension
+                (if_clause
+                  (parenthesized_expression
+                    (special_variable))
+                  (identifier)
+                  (function_call
+                    (identifier)
+                    (arguments
+                      (identifier)))))))))
+      (assignment
+        (identifier)
+        (list
+          (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (number
+                    (decimal))))
+              (list_comprehension
+                (if_clause
+                  (parenthesized_expression
+                    (binary_expression
+                      (identifier)
+                      (number
+                        (decimal))))
+                  (list_comprehension
+                    (for_clause
+                      (parenthesized_assignments
+                        (assignment
+                          (identifier)
+                          (number
+                            (decimal))))
+                      (list_comprehension
+                        (if_clause
+                          (parenthesized_expression
+                            (binary_expression
+                              (identifier)
+                              (number
+                                (decimal))))
+                          (identifier)
+                          (identifier)))))))))))
+      (assignment
+        (identifier)
+        (list
+          (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (range
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (list_comprehension
+                (if_clause
+                  (parenthesized_expression
+                    (binary_expression
+                      (binary_expression
+                        (identifier)
+                        (number
+                          (decimal)))
+                      (number
+                        (decimal))))
+                  (identifier)
                   (list_comprehension
                     (if_clause
-                      condition: (parenthesized_expression
+                      (parenthesized_expression
                         (binary_expression
-                          left: (identifier)
-                          right: (number)))
-                      consequence: (identifier)
-                      alternative: (identifier)))))))))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number))))
-          (list_comprehension
-            (if_clause
-              condition: (parenthesized_expression
-                (binary_expression
-                  left: (binary_expression
-                    left: (identifier)
-                    right: (number))
-                  right: (number)))
-              consequence: (identifier)
-              alternative: (list_comprehension
-                (if_clause
-                  condition: (parenthesized_expression
-                    (binary_expression
-                      left: (identifier)
-                      right: (number)))
-                  consequence: (binary_expression
-                    left: (identifier)
-                    right: (number))
-                  alternative: (number)))))))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number))))
-          (identifier)))
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (list
-                (number)
-                (number)
-                (number))))
-          (identifier)))
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (list
-                (number)
-                (number)
-                (number))))
-          (identifier)))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (for_clause
-          (parenthesized_assignments
-            (assignment
-              left: (identifier)
-              right: (range
-                start: (number)
-                end: (number))))
+                          (identifier)
+                          (number
+                            (decimal))))
+                      (binary_expression
+                        (identifier)
+                        (number
+                          (decimal)))
+                      (number
+                        (decimal))))))))))
+      (assignment
+        (identifier)
+        (list
           (list_comprehension
             (for_clause
               (parenthesized_assignments
                 (assignment
-                  left: (identifier)
-                  right: (list
-                    (number)
-                    (number)
-                    (number))))
+                  (identifier)
+                  (range
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (identifier)))
+          (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (list
+                    (number
+                      (decimal))
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (identifier)))
+          (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (list
+                    (number
+                      (decimal))
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
+              (identifier)))))
+      (assignment
+        (identifier)
+        (list
+          (list_comprehension
+            (for_clause
+              (parenthesized_assignments
+                (assignment
+                  (identifier)
+                  (range
+                    (number
+                      (decimal))
+                    (number
+                      (decimal)))))
               (list_comprehension
                 (for_clause
                   (parenthesized_assignments
                     (assignment
-                      left: (identifier)
-                      right: (list
-                        (number)
-                        (number)
-                        (number))))
-                  (binary_expression
-                    left: (binary_expression
-                      left: (identifier)
-                      right: (identifier))
-                    right: (identifier))))))))))
-  (assignment
-    left: (identifier)
-    right: (list
-      (list_comprehension
-        (if_clause
-          condition: (parenthesized_expression
-            (binary_expression
-              left: (identifier)
-              right: (number)))
-          consequence: (list_comprehension
-            (for_clause
-              (parenthesized_assignments
-                (assignment
-                  left: (identifier)
-                  right: (range
-                    start: (number)
-                    end: (number))))
+                      (identifier)
+                      (list
+                        (number
+                          (decimal))
+                        (number
+                          (decimal))
+                        (number
+                          (decimal)))))
+                  (list_comprehension
+                    (for_clause
+                      (parenthesized_assignments
+                        (assignment
+                          (identifier)
+                          (list
+                            (number
+                              (decimal))
+                            (number
+                              (decimal))
+                            (number
+                              (decimal)))))
+                      (binary_expression
+                        (binary_expression
+                          (identifier)
+                          (identifier))
+                        (identifier))))))))))
+      (assignment
+        (identifier)
+        (list
+          (list_comprehension
+            (if_clause
+              (parenthesized_expression
+                (binary_expression
+                  (identifier)
+                  (number
+                    (decimal))))
               (list_comprehension
-                (if_clause
-                  condition: (parenthesized_expression
-                    (binary_expression
-                      left: (identifier)
-                      right: (identifier)))
-                  consequence: (identifier)))))
-          alternative: (identifier))))))
+                (for_clause
+                  (parenthesized_assignments
+                    (assignment
+                      (identifier)
+                      (range
+                        (number
+                          (decimal))
+                        (number
+                          (decimal)))))
+                  (list_comprehension
+                    (if_clause
+                      (parenthesized_expression
+                        (binary_expression
+                          (identifier)
+                          (identifier)))
+                      (identifier)))))
+              (identifier))))))
 
 ================================================================================
 Numbers
@@ -300,20 +351,22 @@ full = -2.3e-4;
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    (identifier)
-    (number))
-  (assignment
-    (identifier)
-    (unary_expression
-      (number)))
-  (assignment
-    (identifier)
-    (number))
-  (assignment
-    (identifier)
-    (unary_expression
-      (number))))
+      (assignment
+        (identifier)
+        (number
+          (decimal)))
+      (assignment
+        (identifier)
+        (number
+          (float)))
+      (assignment
+        (identifier)
+        (number
+          (float)))
+      (assignment
+        (identifier)
+        (number
+          (float))))
 
 ================================================================================
 Each Expansion
@@ -326,79 +379,96 @@ each_if = [each if (len(a) < 5) 10 else 15, each if (len(str_list) < 5) true];
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    (identifier)
-    (list
-      (number)
-      (number)
-      (number)))
-  (assignment
-    (identifier)
-    (list
-      (number)
-      (number)
-      (each
-        (identifier))
-      (each
-        (parenthesized_expression
-          (list
-            (number)
-            (number))))
-      (each
-        (number))
-      (each
-        (list_comprehension
-          (for_clause
-            (parenthesized_assignments
-              (assignment
-                (identifier)
-                (range
-                  (number)
-                  (number))))
-            (identifier))))))
-  (assignment
-    (identifier)
-    (list
-      (each
-        (boolean))
-      (each
-        (range
-          (number)
-          (number)))
-      (each
-        (undef))
-      (each
-        (string))))
-  (assignment
-    (identifier)
-    (list
-      (each
-        (function
-          (parameters_declaration)
-          (number)))))
-  (assignment
-    (identifier)
-    (list
-      (each
-        (list_comprehension
-          (if_clause
+      (assignment
+        (identifier)
+        (list
+          (number
+            (decimal))
+          (number
+            (decimal))
+          (number
+            (decimal))))
+      (assignment
+        (identifier)
+        (list
+          (number
+            (decimal))
+          (number
+            (decimal))
+          (each
+            (identifier))
+          (each
             (parenthesized_expression
-              (binary_expression
-                (function_call
-                  (identifier)
-                  (arguments
-                    (identifier)))
-                (number)))
-            (number)
-            (number))))
-      (each
-        (list_comprehension
-          (if_clause
-            (parenthesized_expression
-              (binary_expression
-                (function_call
-                  (identifier)
-                  (arguments
-                    (identifier)))
-                (number)))
-            (boolean)))))))
+              (list
+                (number
+                  (decimal))
+                (number
+                  (decimal)))))
+          (each
+            (number
+              (decimal)))
+          (each
+            (list_comprehension
+              (for_clause
+                (parenthesized_assignments
+                  (assignment
+                    (identifier)
+                    (range
+                      (number
+                        (decimal))
+                      (number
+                        (decimal)))))
+                (identifier))))))
+      (assignment
+        (identifier)
+        (list
+          (each
+            (boolean))
+          (each
+            (range
+              (number
+                (decimal))
+              (number
+                (decimal))))
+          (each
+            (undef))
+          (each
+            (string))))
+      (assignment
+        (identifier)
+        (list
+          (each
+            (function
+              (parameters_declaration)
+              (number
+                (decimal))))))
+      (assignment
+        (identifier)
+        (list
+          (each
+            (list_comprehension
+              (if_clause
+                (parenthesized_expression
+                  (binary_expression
+                    (function_call
+                      (identifier)
+                      (arguments
+                        (identifier)))
+                    (number
+                      (decimal))))
+                (number
+                  (decimal))
+                (number
+                  (decimal)))))
+          (each
+            (list_comprehension
+              (if_clause
+                (parenthesized_expression
+                  (binary_expression
+                    (function_call
+                      (identifier)
+                      (arguments
+                        (identifier)))
+                    (number
+                      (decimal))))
+                (boolean)))))))

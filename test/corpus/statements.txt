@@ -1,5 +1,5 @@
 ================================================================================
-Tranformations
+Transformations
 ================================================================================
 cylinder();
 rotate([90, 0, 0]) cylinder();
@@ -12,52 +12,61 @@ translate([1, 0, 0]) {
 --------------------------------------------------------------------------------
 
 (source_file
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments)))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (list
-          (number)
-          (number)
-          (number))))
-    (transform_chain
-      (module_call
-        name: (identifier)
-        arguments: (arguments))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (list
-          (number)
-          (number)
-          (number))))
-    (union_block
       (transform_chain
         (module_call
-          name: (identifier)
-          arguments: (arguments))
+          (identifier)
+          (arguments)))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (list
+              (number
+                (decimal))
+              (number
+                (decimal))
+              (number
+                (decimal)))))
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (list
+              (number
+                (decimal))
+              (number
+                (decimal))
+              (number
+                (decimal)))))
         (union_block
           (transform_chain
             (module_call
-              name: (identifier)
-              arguments: (arguments
-                (list
-                  (number)
-                  (number)
-                  (number))))
-            (transform_chain
-              (module_call
-                name: (identifier)
-                arguments: (arguments))))
-          (transform_chain
-            (module_call
-              name: (identifier)
-              arguments: (arguments))))))))
+              (identifier)
+              (arguments))
+            (union_block
+              (transform_chain
+                (module_call
+                  (identifier)
+                  (arguments
+                    (list
+                      (number
+                        (decimal))
+                      (number
+                        (decimal))
+                      (number
+                        (decimal)))))
+                (transform_chain
+                  (module_call
+                    (identifier)
+                    (arguments))))
+              (transform_chain
+                (module_call
+                  (identifier)
+                  (arguments))))))))
 
 ================================================================================
 Control Flow
@@ -82,92 +91,107 @@ intersection_for (i = [1, 2, 3]) {
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_block
-    condition: (parenthesized_expression
-      (special_variable))
-    consequence: (if_block
-      condition: (parenthesized_expression
-        (boolean))
-      consequence: (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments)))
-      alternative: (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments
-            (list
-              (number)
-              (number)
-              (number))))
-        (transform_chain
-          (module_call
-            name: (identifier)
-            arguments: (arguments))))))
-  (for_block
-    (parenthesized_assignments
-      (assignment
-        left: (identifier)
-        right: (range
-          start: (number)
-          increment: (number)
-          end: (number))))
-    body: (union_block
-      (let_block
+      (if_block
+        (parenthesized_expression
+          (special_variable))
+        (if_block
+          (parenthesized_expression
+            (boolean))
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments)))
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments
+                (list
+                  (number
+                    (decimal))
+                  (number
+                    (decimal))
+                  (number
+                    (decimal)))))
+            (transform_chain
+              (module_call
+                (identifier)
+                (arguments))))))
+      (for_block
         (parenthesized_assignments
           (assignment
-            left: (identifier)
-            right: (binary_expression
-              left: (identifier)
-              right: (number)))
+            (identifier)
+            (range
+              (number
+                (decimal))
+              (number
+                (decimal))
+              (number
+                (decimal)))))
+        (union_block
+          (let_block
+            (parenthesized_assignments
+              (assignment
+                (identifier)
+                (binary_expression
+                  (identifier)
+                  (number
+                    (decimal))))
+              (assignment
+                (identifier)
+                (binary_expression
+                  (identifier)
+                  (number
+                    (decimal)))))
+            (union_block
+              (transform_chain
+                (module_call
+                  (identifier)
+                  (arguments
+                    (list
+                      (identifier)
+                      (identifier)
+                      (number
+                        (decimal)))))
+                (transform_chain
+                  (module_call
+                    (identifier)
+                    (arguments
+                      (assignment
+                        (identifier)
+                        (identifier))))))))))
+      (intersection_for_block
+        (parenthesized_assignments
           (assignment
-            left: (identifier)
-            right: (binary_expression
-              left: (identifier)
-              right: (number))))
-        body: (union_block
-          (transform_chain
-            (module_call
-              name: (identifier)
-              arguments: (arguments
-                (list
+            (identifier)
+            (list
+              (number
+                (decimal))
+              (number
+                (decimal))
+              (number
+                (decimal)))))
+        (union_block
+          (if_block
+            (parenthesized_expression
+              (binary_expression
+                (identifier)
+                (number
+                  (decimal))))
+            (union_block
+              (transform_chain
+                (module_call
                   (identifier)
-                  (identifier)
-                  (number))))
-            (transform_chain
-              (module_call
-                name: (identifier)
-                arguments: (arguments
-                  (assignment
-                    left: (identifier)
-                    right: (identifier))))))))))
-  (intersection_for_block
-    (parenthesized_assignments
-      (assignment
-        left: (identifier)
-        right: (list
-          (number)
-          (number)
-          (number))))
-    body: (union_block
-      (if_block
-        condition: (parenthesized_expression
-          (binary_expression
-            left: (identifier)
-            right: (number)))
-        consequence: (union_block
-          (transform_chain
-            (module_call
-              name: (identifier)
-              arguments: (arguments
-                (list
-                  (number)
-                  (identifier)
-                  (number))))
-            (transform_chain
-              (module_call
-                name: (identifier)
-                arguments: (arguments)))))))))
+                  (arguments
+                    (list
+                      (number
+                        (decimal))
+                      (identifier)
+                      (number
+                        (decimal)))))
+                (transform_chain
+                  (module_call
+                    (identifier)
+                    (arguments)))))))))
 
 ================================================================================
 Modifiers
@@ -178,46 +202,50 @@ rotate([0, 90, 0]) # cylinder();
 % cube();
 --------------------------------------------------------------------------------
 
-(source_file
-  (modifier_chain
-    (modifier)
-    (transform_chain
-      (module_call
-        name: (identifier)
-        arguments: (arguments))))
-  (modifier_chain
-    (modifier)
-    (transform_chain
-      (module_call
-        name: (identifier)
-        arguments: (arguments
-          (number)))
-      (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments
-            (string))))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (list
-          (number)
-          (number)
-          (number))))
-    (modifier_chain
-      (modifier)
-      (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments)))))
-  (modifier_chain
-    (modifier)
-    (transform_chain
-      (module_call
-        name: (identifier)
-        arguments: (arguments)))))
 
+(source_file
+      (modifier_chain
+        (modifier)
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments))))
+      (modifier_chain
+        (modifier)
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments
+              (number
+                (decimal))))
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments
+                (string))))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (list
+              (number
+                (decimal))
+              (number
+                (decimal))
+              (number
+                (decimal)))))
+        (modifier_chain
+          (modifier)
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments)))))
+      (modifier_chain
+        (modifier)
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments)))))
 ================================================================================
 Assertions
 ================================================================================
@@ -229,31 +257,35 @@ for (y = [3:5])
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (number))
-  (assert_statement
-    condition: (binary_expression
-      left: (identifier)
-      right: (number))
-    (transform_chain
-      (module_call
-        name: (identifier)
-        arguments: (arguments))))
-  (for_block
-    (parenthesized_assignments
       (assignment
-        left: (identifier)
-        right: (range
-          start: (number)
-          end: (number))))
-    body: (assert_statement
-      condition: (assert_expression
+        (identifier)
+        (number
+          (decimal)))
+      (assert_statement
         (binary_expression
-          left: (identifier)
-          right: (identifier)))
-      message: (string)
-      (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments))))))
+          (identifier)
+          (number
+            (decimal)))
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments))))
+      (for_block
+        (parenthesized_assignments
+          (assignment
+            (identifier)
+            (range
+              (number
+                (decimal))
+              (number
+                (decimal)))))
+        (assert_statement
+          (assert_expression
+            (binary_expression
+              (identifier)
+              (identifier)))
+          (string)
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments))))))
