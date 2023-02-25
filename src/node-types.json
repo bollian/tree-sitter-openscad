@@ -633,7 +633,7 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -1425,6 +1425,21 @@
     }
   },
   {
+    "type": "special_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ternary_expression",
     "named": true,
     "fields": {
@@ -1621,6 +1636,10 @@
     "named": false
   },
   {
+    "type": "$",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -1775,10 +1794,6 @@
   {
     "type": "module",
     "named": false
-  },
-  {
-    "type": "special_variable",
-    "named": true
   },
   {
     "type": "string",

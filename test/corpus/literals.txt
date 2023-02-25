@@ -136,7 +136,8 @@ grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
               (list_comprehension
                 (if_clause
                   (parenthesized_expression
-                    (special_variable))
+                    (special_variable
+					  (identifier)))
                   (identifier)))))))
       (assignment
         (identifier)
@@ -154,7 +155,8 @@ grouped = [if (x < 7) (for (y = [1:10]) if (y > x) y) else x];
               (list_comprehension
                 (if_clause
                   (parenthesized_expression
-                    (special_variable))
+                    (special_variable
+					  (identifier)))
                   (identifier)
                   (function_call
                     (identifier)

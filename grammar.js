@@ -132,17 +132,17 @@ function binary_operator(operator, rule) {
 module.exports = grammar({
   name: 'openscad',
 
-  word: $ => $.identifier,
+  extras: $ => [
+    $.comment,
+    /\s/,
+  ],
 
   supertypes: $ => [
     $.literal,
     $.expression,
   ],
 
-  extras: $ => [
-    /\s|\\\r?\n/,
-    $.comment,
-  ],
+  word: $ => $.identifier,
 
   rules: {
     source_file: $ => repeat(choice($.use_statement, $._item)),
@@ -168,12 +168,12 @@ module.exports = grammar({
 
     // function declarations are slightly different from $.function, which is for
     // function literals
-    function_declaration: $ => seq(
+    function_declaration: $ => prec.right(seq(
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters_declaration),
-      '=', $.expression,
-    ),
+      '=', repeat1($.expression),
+    )),
 
     // statements are language constructs that can create objects
     _statement: $ => choice(
@@ -189,6 +189,7 @@ module.exports = grammar({
       $.assert_statement,
       ';',
     ),
+
     // use/include statements
     // These are called statements, but use statements aren't included in
     // $._statement because they can't be used in all the same places as other
@@ -372,7 +373,7 @@ module.exports = grammar({
 
     // valid names for variables, functions, and modules
     identifier: _ => /[a-zA-Z_]\w*/,
-    special_variable: _ => token(seq('$', /[a-zA-Z_]\w*/)),
+    special_variable: $ => seq('$', $.identifier),
     _variable_name: $ => choice($.identifier, $.special_variable),
 
     string: _ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),

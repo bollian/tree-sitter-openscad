@@ -68,7 +68,8 @@ module comma1(x,) {}
                 (number
                   (decimal)))))
           (assignment
-            (special_variable)
+            (special_variable
+			  (identifier))
             (number
               (decimal))))
         (transform_chain

@@ -93,7 +93,8 @@ intersection_for (i = [1, 2, 3]) {
 (source_file
       (if_block
         (parenthesized_expression
-          (special_variable))
+          (special_variable
+		    (identifier)))
         (if_block
           (parenthesized_expression
             (boolean))
