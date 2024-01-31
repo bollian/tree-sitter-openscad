@@ -10,50 +10,67 @@ named_index = [1, 2, 3, 4].x;
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (binary_expression
-      left: (number)
-      right: (number)))
-  (assignment
-    left: (identifier)
-    right: (string))
-  (assignment
-    left: (identifier)
-    right: (function_call
-      function: (identifier)
-      arguments: (arguments)))
-  (assignment
-    left: (identifier)
-    right: (binary_expression
-      left: (binary_expression
-        left: (binary_expression
-          left: (binary_expression
-            left: (binary_expression
-              left: (number)
-              right: (number))
-            right: (number))
-          right: (number))
-        right: (number))
-      right: (number)))
-  (assignment
-    left: (identifier)
-    right: (index_expression
-      value: (list
-        (number)
-        (number)
-        (number)
-        (number))
-      index: (number)))
-  (assignment
-    left: (identifier)
-    right: (dot_index_expression
-      value: (list
-        (number)
-        (number)
-        (number)
-        (number))
-      index: (identifier))))
+      (assignment
+        (identifier)
+        (binary_expression
+          (number
+            (decimal))
+          (number
+            (decimal))))
+      (assignment
+        (identifier)
+        (string))
+      (assignment
+        (identifier)
+        (function_call
+          (identifier)
+          (arguments)))
+      (assignment
+        (identifier)
+        (binary_expression
+          (binary_expression
+            (binary_expression
+              (binary_expression
+                (binary_expression
+                  (number
+                    (decimal))
+                  (number
+                    (decimal)))
+                (number
+                  (decimal)))
+              (number
+                (decimal)))
+            (number
+              (decimal)))
+          (number
+            (decimal))))
+      (assignment
+        (identifier)
+        (index_expression
+          (list
+            (number
+              (decimal))
+            (number
+              (decimal))
+            (number
+              (decimal))
+            (number
+              (decimal)))
+          (number
+            (decimal))))
+      (assignment
+        (identifier)
+        (dot_index_expression
+          (list
+            (number
+              (decimal))
+            (number
+              (decimal))
+            (number
+              (decimal))
+            (number
+              (decimal)))
+          (identifier))))
 
 ================================================================================
 Logical Precedence
@@ -75,109 +92,123 @@ echo(true && 4 == 4);
 --------------------------------------------------------------------------------
 
 (source_file
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier))
-    (function_call
-      function: (identifier)
-      arguments: (arguments
+      (function_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier)))
         (function_call
-          function: (identifier)
-          arguments: (arguments
-            (string)
-            (identifier))))))
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier))
-    (binary_expression
-      left: (function_call
-        function: (identifier)
-        arguments: (arguments
-          (identifier)))
-      right: (undef)))
-  (assignment
-    left: (identifier)
-    right: (boolean))
-  (assignment
-    left: (identifier)
-    right: (number))
-  (assignment
-    left: (identifier)
-    right: (number))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
+          (identifier)
+          (arguments
+            (function_call
+              (identifier)
+              (arguments
+                (string)
+                (identifier))))))
+      (function_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier)))
         (binary_expression
-          left: (binary_expression
-            left: (identifier)
-            right: (identifier))
-          right: (identifier)))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (binary_expression
-          left: (identifier)
-          right: (binary_expression
-            left: (identifier)
-            right: (identifier))))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (binary_expression
-          left: (binary_expression
-            left: (function_call
-              function: (identifier)
-              arguments: (arguments
-                (number)))
-            right: (function_call
-              function: (identifier)
-              arguments: (arguments
-                (number))))
-          right: (function_call
-            function: (identifier)
-            arguments: (arguments
-              (number)))))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (binary_expression
-          left: (function_call
-            function: (identifier)
-            arguments: (arguments
-              (number)))
-          right: (binary_expression
-            left: (function_call
-              function: (identifier)
-              arguments: (arguments
-                (number)))
-            right: (function_call
-              function: (identifier)
-              arguments: (arguments
-                (number))))))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (binary_expression
-          left: (binary_expression
-            left: (number)
-            right: (number))
-          right: (boolean)))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (binary_expression
-          left: (boolean)
-          right: (binary_expression
-            left: (number)
-            right: (number)))))))
+          (function_call
+            (identifier)
+            (arguments
+              (identifier)))
+          (undef)))
+      (assignment
+        (identifier)
+        (boolean))
+      (assignment
+        (identifier)
+        (number
+          (decimal)))
+      (assignment
+        (identifier)
+        (number
+          (decimal)))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (binary_expression
+              (binary_expression
+                (identifier)
+                (identifier))
+              (identifier)))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (binary_expression
+              (identifier)
+              (binary_expression
+                (identifier)
+                (identifier))))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (binary_expression
+              (binary_expression
+                (function_call
+                  (identifier)
+                  (arguments
+                    (number
+                      (decimal))))
+                (function_call
+                  (identifier)
+                  (arguments
+                    (number
+                      (decimal)))))
+              (function_call
+                (identifier)
+                (arguments
+                  (number
+                    (decimal))))))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (binary_expression
+              (function_call
+                (identifier)
+                (arguments
+                  (number
+                    (decimal))))
+              (binary_expression
+                (function_call
+                  (identifier)
+                  (arguments
+                    (number
+                      (decimal))))
+                (function_call
+                  (identifier)
+                  (arguments
+                    (number
+                      (decimal)))))))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (binary_expression
+              (binary_expression
+                (number
+                  (decimal))
+                (number
+                  (decimal)))
+              (boolean)))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (binary_expression
+              (boolean)
+              (binary_expression
+                (number
+                  (decimal))
+                (number
+                  (decimal))))))))
 
 ================================================================================
 Mathematical Precedence
@@ -186,15 +217,19 @@ num = 5 + 4 * 3 ^ 2;
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (binary_expression
-      left: (number)
-      right: (binary_expression
-        left: (number)
-        right: (binary_expression
-          left: (number)
-          right: (number))))))
+      (assignment
+        (identifier)
+        (binary_expression
+          (number
+            (decimal))
+          (binary_expression
+            (number
+              (decimal))
+            (binary_expression
+              (number
+                (decimal))
+              (number
+                (decimal)))))))
 
 ================================================================================
 Function Precedence
@@ -208,57 +243,67 @@ indexer = function(v) v[0];
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
-        (identifier))
-      body: (identifier)))
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
-        (identifier))
-      body: (function_call
-        function: (identifier)
-        arguments: (arguments
-          (identifier)))))
-  (assignment
-    left: (identifier)
-    right: (function_call
-      function: (parenthesized_expression
+      (assignment
+        (identifier)
         (function
-          parameters: (parameters_declaration
-            (identifier))
-          body: (identifier)))
-      arguments: (arguments
-        (number))))
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
+          (parameters_declaration
+            (parameter
+              (identifier)))
+          (identifier)))
+      (assignment
         (identifier)
-        (identifier))
-      body: (binary_expression
-        left: (identifier)
-        right: (identifier))))
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
+        (function
+          (parameters_declaration
+            (parameter
+              (identifier)))
+          (function_call
+            (identifier)
+            (arguments
+              (identifier)))))
+      (assignment
         (identifier)
-        (identifier))
-      body: (binary_expression
-        left: (identifier)
-        right: (identifier))))
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
-        (identifier))
-      body: (index_expression
-        value: (identifier)
-        index: (number)))))
+        (function_call
+          (parenthesized_expression
+            (function
+              (parameters_declaration
+                (parameter
+                  (identifier)))
+              (identifier)))
+          (arguments
+            (number
+              (decimal)))))
+      (assignment
+        (identifier)
+        (function
+          (parameters_declaration
+            (parameter
+              (identifier))
+            (parameter
+              (identifier)))
+          (binary_expression
+            (identifier)
+            (identifier))))
+      (assignment
+        (identifier)
+        (function
+          (parameters_declaration
+            (parameter
+              (identifier))
+            (parameter
+              (identifier)))
+          (binary_expression
+            (identifier)
+            (identifier))))
+      (assignment
+        (identifier)
+        (function
+          (parameters_declaration
+            (parameter
+              (identifier)))
+          (index_expression
+            (identifier)
+            (number
+              (decimal))))))
 
 ================================================================================
 Functions and Ternaries
@@ -269,31 +314,33 @@ echo(function(y) y ? "first" : "second");
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
-        (identifier))
-      body: (identifier)))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
-        (ternary_expression
-          condition: (identifier)
-          consequence: (string)
-          alternative: (string)))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
+      (assignment
+        (identifier)
         (function
-          parameters: (parameters_declaration
-            (identifier))
-          body: (ternary_expression
-            condition: (identifier)
-            consequence: (string)
-            alternative: (string)))))))
+          (parameters_declaration
+            (parameter
+              (identifier)))
+          (identifier)))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (ternary_expression
+              (identifier)
+              (string)
+              (string)))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (function
+              (parameters_declaration
+                (parameter
+                  (identifier)))
+              (ternary_expression
+                (identifier)
+                (string)
+                (string)))))))
 
 ================================================================================
 Assertions
@@ -304,28 +351,30 @@ echo(assert(true) assert(false) true);
 --------------------------------------------------------------------------------
 
 (source_file
-  (assignment
-    left: (identifier)
-    right: (assert_expression
-      condition: (boolean)
-      message: (boolean)
-      (string)
-      (string)
-      (number)))
-  (assignment
-    left: (identifier)
-    right: (function
-      parameters: (parameters_declaration
-        (identifier))
-      body: (assert_expression
-        condition: (identifier)
-        (identifier))))
-  (transform_chain
-    (module_call
-      name: (identifier)
-      arguments: (arguments
+      (assignment
+        (identifier)
         (assert_expression
-          condition: (boolean)
+          (boolean)
+          (boolean)
+          (string)
+          (string)
+          (number
+            (decimal))))
+      (assignment
+        (identifier)
+        (function
+          (parameters_declaration
+            (parameter
+              (identifier)))
           (assert_expression
-            condition: (boolean)
-            (boolean)))))))
+            (identifier)
+            (identifier))))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (assert_expression
+              (boolean)
+              (assert_expression
+                (boolean)
+                (boolean)))))))

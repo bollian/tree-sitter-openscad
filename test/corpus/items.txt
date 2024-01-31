@@ -28,76 +28,86 @@ module comma1(x,) {}
 --------------------------------------------------------------------------------
 
 (source_file
-  (use_statement
-    (include_path))
-  (include_statement
-    (include_path))
-  (use_statement
-    (include_path))
-  (include_statement
-    (include_path))
-  (use_statement
-    (include_path))
-  (comment)
-  (assignment
-    left: (identifier)
-    right: (number))
-  (comment)
-  (assignment
-    left: (identifier)
-    right: (boolean))
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier))
-    (binary_expression
-      left: (identifier)
-      right: (identifier)))
-  (module_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier)
+      (use_statement
+        (include_path))
+      (include_statement
+        (include_path))
+      (use_statement
+        (include_path))
+      (include_statement
+        (include_path))
+      (use_statement
+        (include_path))
+      (comment)
       (assignment
-        left: (identifier)
-        right: (function_call
-          function: (identifier)
-          arguments: (arguments
-            (number))))
+        (identifier)
+        (number
+          (decimal)))
+      (comment)
       (assignment
-        left: (special_variable)
-        right: (number)))
-    body: (transform_chain
-      (module_call
-        name: (identifier)
-        arguments: (arguments
+        (identifier)
+        (boolean))
+      (function_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier)))
+        (binary_expression
+          (identifier)
+          (identifier)))
+      (module_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier))
           (assignment
-            left: (identifier)
-            right: (identifier))
+            (identifier)
+            (function_call
+              (identifier)
+              (arguments
+                (number
+                  (decimal)))))
           (assignment
-            left: (identifier)
-            right: (identifier))))))
-  (module_declaration
-    name: (identifier)
-    parameters: (parameters_declaration)
-    body: (union_block))
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration)
-    (number))
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier))
-    (number))
-  (module_declaration
-    name: (identifier)
-    parameters: (parameters_declaration)
-    body: (union_block))
-  (module_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier))
-    body: (union_block)))
+            (special_variable
+			  (identifier))
+            (number
+              (decimal))))
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments
+              (assignment
+                (identifier)
+                (identifier))
+              (assignment
+                (identifier)
+                (identifier))))))
+      (module_declaration
+        (identifier)
+        (parameters_declaration)
+        (union_block))
+      (function_declaration
+        (identifier)
+        (parameters_declaration)
+        (number
+          (decimal)))
+      (function_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier)))
+        (number
+          (decimal)))
+      (module_declaration
+        (identifier)
+        (parameters_declaration)
+        (union_block))
+      (module_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier)))
+        (union_block)))
 
 ================================================================================
 Nested Items
@@ -150,30 +160,33 @@ module my_cylinder() {
 --------------------------------------------------------------------------------
 
 (source_file
-  (comment)
-  (assignment
-    left: (identifier)
-    right: (number))
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (identifier))
-    (comment)
-    (binary_expression
-      left: (identifier)
-      right: (number)))
-  (comment)
-  (module_declaration
-    name: (identifier)
-    parameters: (parameters_declaration)
-    body: (union_block
       (comment)
-      (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments)))
+      (assignment
+        (identifier)
+        (number
+          (decimal)))
+      (function_declaration
+        (identifier)
+        (parameters_declaration
+          (parameter
+            (identifier)))
+        (comment)
+        (binary_expression
+          (identifier)
+          (number
+            (decimal))))
       (comment)
-      (transform_chain
-        (module_call
-          name: (identifier)
-          arguments: (arguments))))))
+      (module_declaration
+        (identifier)
+        (parameters_declaration)
+        (union_block
+          (comment)
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments)))
+          (comment)
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments)))))) 
