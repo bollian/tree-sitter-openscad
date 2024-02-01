@@ -2038,7 +2038,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "\\d+"
+        "value": "-?\\d+"
       }
     },
     "float": {
@@ -2120,7 +2120,8 @@
   "inline": [],
   "supertypes": [
     "literal",
-    "expression"
+    "expression",
+    "number"
   ]
 }
 

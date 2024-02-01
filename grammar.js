@@ -140,6 +140,7 @@ module.exports = grammar({
   supertypes: $ => [
     $.literal,
     $.expression,
+    $.number,
   ],
 
   word: $ => $.identifier,
@@ -378,7 +379,7 @@ module.exports = grammar({
 
     string: _ => token(seq('"', repeat(choice(/[^"]/, '\\"')), '"')),
     number: $ => choice($.decimal, $.float),
-    decimal: _ => token(/\d+/),
+    decimal: _ => token(/-?\d+/),
     float: _ => token(/-?(\d+(\.\d+)?|\.\d+)(e-?\d+)?/),
     boolean: _ => choice('true', 'false'),
     undef: _ => 'undef',

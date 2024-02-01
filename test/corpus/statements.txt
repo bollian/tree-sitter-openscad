@@ -12,61 +12,52 @@ translate([1, 0, 0]) {
 --------------------------------------------------------------------------------
 
 (source_file
+  (transform_chain
+    (module_call
+      (identifier)
+      (arguments)))
+  (transform_chain
+    (module_call
+      (identifier)
+      (arguments
+        (list
+          (decimal)
+          (decimal)
+          (decimal))))
+    (transform_chain
+      (module_call
+        (identifier)
+        (arguments))))
+  (transform_chain
+    (module_call
+      (identifier)
+      (arguments
+        (list
+          (decimal)
+          (decimal)
+          (decimal))))
+    (union_block
       (transform_chain
         (module_call
           (identifier)
-          (arguments)))
-      (transform_chain
-        (module_call
-          (identifier)
-          (arguments
-            (list
-              (number
-                (decimal))
-              (number
-                (decimal))
-              (number
-                (decimal)))))
-        (transform_chain
-          (module_call
-            (identifier)
-            (arguments))))
-      (transform_chain
-        (module_call
-          (identifier)
-          (arguments
-            (list
-              (number
-                (decimal))
-              (number
-                (decimal))
-              (number
-                (decimal)))))
+          (arguments))
         (union_block
           (transform_chain
             (module_call
               (identifier)
-              (arguments))
-            (union_block
-              (transform_chain
-                (module_call
-                  (identifier)
-                  (arguments
-                    (list
-                      (number
-                        (decimal))
-                      (number
-                        (decimal))
-                      (number
-                        (decimal)))))
-                (transform_chain
-                  (module_call
-                    (identifier)
-                    (arguments))))
-              (transform_chain
-                (module_call
-                  (identifier)
-                  (arguments))))))))
+              (arguments
+                (list
+                  (decimal)
+                  (decimal)
+                  (decimal))))
+            (transform_chain
+              (module_call
+                (identifier)
+                (arguments))))
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments))))))))
 
 ================================================================================
 Control Flow
@@ -91,108 +82,93 @@ intersection_for (i = [1, 2, 3]) {
 --------------------------------------------------------------------------------
 
 (source_file
-      (if_block
-        (parenthesized_expression
-          (special_variable
-		    (identifier)))
-        (if_block
-          (parenthesized_expression
-            (boolean))
-          (transform_chain
-            (module_call
+  (if_block
+    (parenthesized_expression
+      (special_variable
+        (identifier)))
+    (if_block
+      (parenthesized_expression
+        (boolean))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments)))
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments
+            (list
+              (decimal)
+              (decimal)
+              (decimal))))
+        (transform_chain
+          (module_call
+            (identifier)
+            (arguments))))))
+  (for_block
+    (parenthesized_assignments
+      (assignment
+        (identifier)
+        (range
+          (decimal)
+          (decimal)
+          (decimal))))
+    (union_block
+      (let_block
+        (parenthesized_assignments
+          (assignment
+            (identifier)
+            (binary_expression
               (identifier)
-              (arguments)))
+              (decimal)))
+          (assignment
+            (identifier)
+            (binary_expression
+              (identifier)
+              (decimal))))
+        (union_block
           (transform_chain
             (module_call
               (identifier)
               (arguments
                 (list
-                  (number
-                    (decimal))
-                  (number
-                    (decimal))
-                  (number
-                    (decimal)))))
+                  (identifier)
+                  (identifier)
+                  (decimal))))
             (transform_chain
               (module_call
                 (identifier)
-                (arguments))))))
-      (for_block
-        (parenthesized_assignments
-          (assignment
-            (identifier)
-            (range
-              (number
-                (decimal))
-              (number
-                (decimal))
-              (number
-                (decimal)))))
-        (union_block
-          (let_block
-            (parenthesized_assignments
-              (assignment
-                (identifier)
-                (binary_expression
-                  (identifier)
-                  (number
-                    (decimal))))
-              (assignment
-                (identifier)
-                (binary_expression
-                  (identifier)
-                  (number
-                    (decimal)))))
-            (union_block
-              (transform_chain
-                (module_call
-                  (identifier)
-                  (arguments
-                    (list
-                      (identifier)
-                      (identifier)
-                      (number
-                        (decimal)))))
-                (transform_chain
-                  (module_call
+                (arguments
+                  (assignment
                     (identifier)
-                    (arguments
-                      (assignment
-                        (identifier)
-                        (identifier))))))))))
-      (intersection_for_block
-        (parenthesized_assignments
-          (assignment
+                    (identifier))))))))))
+  (intersection_for_block
+    (parenthesized_assignments
+      (assignment
+        (identifier)
+        (list
+          (decimal)
+          (decimal)
+          (decimal))))
+    (union_block
+      (if_block
+        (parenthesized_expression
+          (binary_expression
             (identifier)
-            (list
-              (number
-                (decimal))
-              (number
-                (decimal))
-              (number
-                (decimal)))))
+            (decimal)))
         (union_block
-          (if_block
-            (parenthesized_expression
-              (binary_expression
-                (identifier)
-                (number
+          (transform_chain
+            (module_call
+              (identifier)
+              (arguments
+                (list
+                  (decimal)
+                  (identifier)
                   (decimal))))
-            (union_block
-              (transform_chain
-                (module_call
-                  (identifier)
-                  (arguments
-                    (list
-                      (number
-                        (decimal))
-                      (identifier)
-                      (number
-                        (decimal)))))
-                (transform_chain
-                  (module_call
-                    (identifier)
-                    (arguments)))))))))
+            (transform_chain
+              (module_call
+                (identifier)
+                (arguments)))))))))
 
 ================================================================================
 Modifiers
@@ -203,50 +179,46 @@ rotate([0, 90, 0]) # cylinder();
 % cube();
 --------------------------------------------------------------------------------
 
-
 (source_file
-      (modifier_chain
-        (modifier)
-        (transform_chain
-          (module_call
-            (identifier)
-            (arguments))))
-      (modifier_chain
-        (modifier)
-        (transform_chain
-          (module_call
-            (identifier)
-            (arguments
-              (number
-                (decimal))))
-          (transform_chain
-            (module_call
-              (identifier)
-              (arguments
-                (string))))))
+  (modifier_chain
+    (modifier)
+    (transform_chain
+      (module_call
+        (identifier)
+        (arguments))))
+  (modifier_chain
+    (modifier)
+    (transform_chain
+      (module_call
+        (identifier)
+        (arguments
+          (decimal)))
       (transform_chain
         (module_call
           (identifier)
           (arguments
-            (list
-              (number
-                (decimal))
-              (number
-                (decimal))
-              (number
-                (decimal)))))
-        (modifier_chain
-          (modifier)
-          (transform_chain
-            (module_call
-              (identifier)
-              (arguments)))))
-      (modifier_chain
-        (modifier)
-        (transform_chain
-          (module_call
-            (identifier)
-            (arguments)))))
+            (string))))))
+  (transform_chain
+    (module_call
+      (identifier)
+      (arguments
+        (list
+          (decimal)
+          (decimal)
+          (decimal))))
+    (modifier_chain
+      (modifier)
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments)))))
+  (modifier_chain
+    (modifier)
+    (transform_chain
+      (module_call
+        (identifier)
+        (arguments)))))
+
 ================================================================================
 Assertions
 ================================================================================
@@ -258,35 +230,31 @@ for (y = [3:5])
 --------------------------------------------------------------------------------
 
 (source_file
+  (assignment
+    (identifier)
+    (decimal))
+  (assert_statement
+    (binary_expression
+      (identifier)
+      (decimal))
+    (transform_chain
+      (module_call
+        (identifier)
+        (arguments))))
+  (for_block
+    (parenthesized_assignments
       (assignment
         (identifier)
-        (number
-          (decimal)))
-      (assert_statement
+        (range
+          (decimal)
+          (decimal))))
+    (assert_statement
+      (assert_expression
         (binary_expression
           (identifier)
-          (number
-            (decimal)))
-        (transform_chain
-          (module_call
-            (identifier)
-            (arguments))))
-      (for_block
-        (parenthesized_assignments
-          (assignment
-            (identifier)
-            (range
-              (number
-                (decimal))
-              (number
-                (decimal)))))
-        (assert_statement
-          (assert_expression
-            (binary_expression
-              (identifier)
-              (identifier)))
-          (string)
-          (transform_chain
-            (module_call
-              (identifier)
-              (arguments))))))
+          (identifier)))
+      (string)
+      (transform_chain
+        (module_call
+          (identifier)
+          (arguments))))))

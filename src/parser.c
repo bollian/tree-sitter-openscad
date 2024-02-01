@@ -747,8 +747,9 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .named = true,
   },
   [sym_number] = {
-    .visible = true,
+    .visible = false,
     .named = true,
+    .supertype = true,
   },
   [sym_boolean] = {
     .visible = true,
@@ -1360,11 +1361,11 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 5:
       if (lookahead == '*') ADVANCE(7);
-      if (lookahead == '/') ADVANCE(56);
+      if (lookahead == '/') ADVANCE(55);
       END_STATE();
     case 6:
       if (lookahead == '*') ADVANCE(6);
-      if (lookahead == '/') ADVANCE(55);
+      if (lookahead == '/') ADVANCE(54);
       if (lookahead != 0) ADVANCE(7);
       END_STATE();
     case 7:
@@ -1373,7 +1374,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 8:
       if (lookahead == '-') ADVANCE(13);
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(54);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(53);
       END_STATE();
     case 9:
       if (lookahead == '/') ADVANCE(5);
@@ -1391,15 +1392,15 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '|') ADVANCE(36);
       END_STATE();
     case 12:
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(53);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(52);
       END_STATE();
     case 13:
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(54);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(53);
       END_STATE();
     case 14:
       if (lookahead != 0 &&
-          lookahead != '\r') ADVANCE(56);
-      if (lookahead == '\r') ADVANCE(57);
+          lookahead != '\r') ADVANCE(55);
+      if (lookahead == '\r') ADVANCE(56);
       END_STATE();
     case 15:
       ACCEPT_TOKEN(ts_builtin_sym_end);
@@ -1456,7 +1457,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 32:
       ACCEPT_TOKEN(anon_sym_DOT);
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(53);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(52);
       END_STATE();
     case 33:
       ACCEPT_TOKEN(anon_sym_DASH);
@@ -1464,7 +1465,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 34:
       ACCEPT_TOKEN(anon_sym_DASH);
       if (lookahead == '.') ADVANCE(12);
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(52);
+      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(51);
       END_STATE();
     case 35:
       ACCEPT_TOKEN(anon_sym_PLUS);
@@ -1498,7 +1499,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 44:
       ACCEPT_TOKEN(anon_sym_SLASH);
       if (lookahead == '*') ADVANCE(7);
-      if (lookahead == '/') ADVANCE(56);
+      if (lookahead == '/') ADVANCE(55);
       END_STATE();
     case 45:
       ACCEPT_TOKEN(anon_sym_CARET);
@@ -1533,32 +1534,26 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 52:
       ACCEPT_TOKEN(sym_float);
-      if (lookahead == '.') ADVANCE(12);
       if (lookahead == 'e') ADVANCE(8);
       if (('0' <= lookahead && lookahead <= '9')) ADVANCE(52);
       END_STATE();
     case 53:
       ACCEPT_TOKEN(sym_float);
-      if (lookahead == 'e') ADVANCE(8);
       if (('0' <= lookahead && lookahead <= '9')) ADVANCE(53);
       END_STATE();
     case 54:
-      ACCEPT_TOKEN(sym_float);
-      if (('0' <= lookahead && lookahead <= '9')) ADVANCE(54);
+      ACCEPT_TOKEN(sym_comment);
       END_STATE();
     case 55:
       ACCEPT_TOKEN(sym_comment);
+      if (lookahead == '\\') ADVANCE(14);
+      if (lookahead != 0 &&
+          lookahead != '\n') ADVANCE(55);
       END_STATE();
     case 56:
       ACCEPT_TOKEN(sym_comment);
-      if (lookahead == '\\') ADVANCE(14);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(56);
-      END_STATE();
-    case 57:
-      ACCEPT_TOKEN(sym_comment);
-      if (lookahead != 0 &&
-          lookahead != '\\') ADVANCE(56);
+          lookahead != '\\') ADVANCE(55);
       if (lookahead == '\\') ADVANCE(14);
       END_STATE();
     default:

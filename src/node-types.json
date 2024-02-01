@@ -88,6 +88,20 @@
     ]
   },
   {
+    "type": "number",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "decimal",
+        "named": true
+      },
+      {
+        "type": "float",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "arguments",
     "named": true,
     "fields": {},
@@ -1232,25 +1246,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "number",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "float",
-          "named": true
-        }
-      ]
     }
   },
   {
