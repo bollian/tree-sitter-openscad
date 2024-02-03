@@ -169,12 +169,12 @@ module.exports = grammar({
 
     // function declarations are slightly different from $.function, which is for
     // function literals
-    function_declaration: $ => prec.right(seq(
+    function_declaration: $ => seq(
       'function',
       field('name', $.identifier),
       field('parameters', $.parameters_declaration),
-      '=', repeat1($.expression),
-    )),
+      '=', $.expression,
+    ),
 
     // statements are language constructs that can create objects
     _statement: $ => choice(
