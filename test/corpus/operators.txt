@@ -4,6 +4,11 @@ Basic Operations
 num = 1 + 2;
 s = "Hello, World!";
 result = call();
+result2 = call(1,);
+result3 = call(
+    h=1,
+    d=2,
+);
 math = 8 % 3 * 5 % 7 / 2 % 1;
 number_index = [1, 2, 3, 4][3];
 named_index = [1, 2, 3, 4].x;
@@ -24,6 +29,23 @@ spaced_negation = - 7;
     (function_call
       (identifier)
       (arguments)))
+  (assignment
+    (identifier)
+    (function_call
+      (identifier)
+      (arguments
+        (decimal))))
+  (assignment
+    (identifier)
+    (function_call
+      (identifier)
+      (arguments
+        (assignment
+          (identifier)
+          (decimal))
+        (assignment
+          (identifier)
+          (decimal)))))
   (assignment
     (identifier)
     (binary_expression

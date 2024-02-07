@@ -241,7 +241,7 @@ module.exports = grammar({
       field('name', $.identifier),
       field('arguments', $.arguments),
     ),
-    arguments: $ => parens(commaSep(choice($.expression, $.assignment))),
+    arguments: $ => parens(commaSep(choice($.expression, $.assignment), true)),
 
     parenthesized_assignments: $ => parens(commaSep($.assignment)),
     parenthesized_expression: $ => parens($.expression),

@@ -2,6 +2,10 @@
 Transformations
 ================================================================================
 cylinder();
+cylinder(
+    d=5,
+    h=100,
+);
 rotate([90, 0, 0]) cylinder();
 translate([1, 0, 0]) {
     difference() {
@@ -16,6 +20,16 @@ translate([1, 0, 0]) {
     (module_call
       (identifier)
       (arguments)))
+  (transform_chain
+    (module_call
+      (identifier)
+      (arguments
+        (assignment
+          (identifier)
+          (decimal))
+        (assignment
+          (identifier)
+          (decimal)))))
   (transform_chain
     (module_call
       (identifier)
