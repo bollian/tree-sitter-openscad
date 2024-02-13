@@ -22,12 +22,13 @@
   "devDependencies": {
     "eslint": "^8.32.0",
     "eslint-config-google": "^0.14.0",
-    "tree-sitter-cli": "^0.20"
+    "tree-sitter-cli": "^0.20",
+    "tree-sitter": "^0.20"
   },
   "repository": "https://github.com/bollian/tree-sitter-openscad",
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
-    "test": "tree-sitter test && script/parse-examples",
+    "test": "node --test",
     "parse": "tree-sitter parse",
     "test-windows": "tree-sitter test"
   },
