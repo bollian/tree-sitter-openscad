@@ -28,7 +28,7 @@
   "repository": "https://github.com/bollian/tree-sitter-openscad",
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
-    "test": "node --test",
+    "test": "tree-sitter test && node --test",
     "parse": "tree-sitter parse",
     "test-windows": "tree-sitter test"
   },
