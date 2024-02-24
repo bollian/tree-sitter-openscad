@@ -1,3 +1,8 @@
+## Version 0.5.1
+
+Bugfixes:
+- allow trailing commas in module and function invocations (8af3261)
+
 ## Version 0.5.0
 
 Features / Behavior Changes:
