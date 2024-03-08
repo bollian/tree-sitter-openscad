@@ -6,8 +6,8 @@
 
 ; Functions
 
-(function_call function: (identifier) @function)
-(module_call name: (identifier) @function)
+(function_call function: (identifier) @function (#set! "priority" 105))
+(module_call name: (identifier) @function (#set! "priority" 105))
 
 ; Variables
 
@@ -20,41 +20,76 @@
 ; Keywords
 
 [
-  "module"
-  "function"
-  "let"
-  "assign"
-  "use"
-  "each"
-] @keyword
+ "module"
+ "function"
+ "let"
+ "assign"
+ "use"
+ "each"
+ ] @keyword
 
 ; Operators
 
 [
-  "||"
-  "&&"
-  "=="
-  "!="
-  "<"
-  ">"
-  "<="
-  ">="
-  "+"
-  "-"
-  "*"
-  "/"
-  "%"
-  "^"
-  "!"
-  ":"
-] @operator
+ "||"
+ "&&"
+ "=="
+ "!="
+ "<"
+ ">"
+ "<="
+ ">="
+ "+"
+ "-"
+ "*"
+ "/"
+ "%"
+ "^"
+ "!"
+ ":"
+ ] @operator
+
+; Builtins
+
+((identifier) @function.builtin
+			  (#any-of? @function.builtin
+			   "union"
+			   "difference"
+			   "intersection"
+			   "circle"
+			   "square"
+			   "polygon"
+			   "text"
+			   "import"
+			   "projection"
+			   "sphere"
+			   "cube"
+			   "cylinder"
+			   "polyhedron"
+			   "linear_extrude"
+			   "rotate_extrude"
+			   "surface"
+			   "translate"
+			   "rotate"
+			   "scale"
+			   "resize"
+			   "mirror"
+			   "multmatrix"
+			   "color"
+			   "offset"
+			   "hull"
+			   "minkowski"
+			   ))
+
+((identifier) @identifier
+			  (#eq? @identifier "PI")) @constant.builtin
 
 ; Conditionals
 
 [
-  "if"
-  "else"
-] @conditional
+ "if"
+ "else"
+ ] @conditional
 
 (ternary_expression
   ["?" ":"] @conditional.ternary)
@@ -62,9 +97,9 @@
 ; Repeats
 
 [
-  "for"
-  "intersection_for"
-] @repeat
+ "for"
+ "intersection_for"
+ ] @repeat
 
 ; Literals
 
@@ -79,8 +114,8 @@
 ; Misc
 
 [
-  "#"
-] @punctuation.special
+ "#"
+ ] @punctuation.special
 
 ["{" "}"] @punctuation.bracket
 
@@ -89,10 +124,10 @@
 ["[" "]"] @punctuation.bracket
 
 [
-  ";"
-  ","
-  "."
-] @punctuation.delimiter
+ ";"
+ ","
+ "."
+ ] @punctuation.delimiter
 
 ; Comments
 
