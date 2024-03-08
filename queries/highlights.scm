@@ -1,8 +1,8 @@
 ; Includes
 
-"include" @include
+"include" @keyword.import
 
-(include_path) @string
+(include_path) @markup.raw
 
 ; Functions
 
@@ -89,25 +89,25 @@
 [
  "if"
  "else"
- ] @conditional
+ ] @keyword.conditional
 
 (ternary_expression
-  ["?" ":"] @conditional.ternary)
+  ["?" ":"] @keyword.conditional.ternary)
 
 ; Repeats
 
 [
  "for"
  "intersection_for"
- ] @repeat
+ ] @keyword.repeat
 
 ; Literals
 
 (decimal) @number
 
-(float) @float
+(float) @number.float
 
-(string) @string
+(string) @markup.raw
 
 (boolean) @boolean
 
