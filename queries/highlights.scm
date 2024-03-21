@@ -2,7 +2,7 @@
 
 "include" @keyword.import
 
-(include_path) @markup.raw
+(include_path) @string
 
 ; Functions
 
@@ -107,7 +107,7 @@
 
 (float) @number.float
 
-(string) @markup.raw
+(string) @string
 
 (boolean) @boolean
 
