@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "openscad",
+      "camelcase": "OpenSCAD",
+      "scope": "source.scad",
+      "path": ".",
+      "file-types": ["scad"],
+      "highlights": ["queries/highlights.scm"],
+      "injections": ["queries/injections.scm"],
+      "locals": ["queries/locals.scm"],
+      "indents": ["queries/indents.scm"],
+      "injection-regex": "openscad"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "OpenSCAD grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Ian Boll",
+        "email": "mainbollian@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/bollian/tree-sitter-openscad.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "rust": true
+  }
+}
